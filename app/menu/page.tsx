@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 interface MenuItem {
@@ -104,7 +104,7 @@ const courseMenus: CourseMenu[] = [
 
 type TabType = 'general' | 'group';
 
-export default function MenuPage() {
+function MenuContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabType>('general');
 
@@ -328,5 +328,17 @@ export default function MenuPage() {
         )}
       </section>
     </div>
+  );
+}
+
+export default function MenuPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-pink-500 text-xl">読み込み中...</div>
+      </div>
+    }>
+      <MenuContent />
+    </Suspense>
   );
 }
