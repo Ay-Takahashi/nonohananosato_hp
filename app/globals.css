@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --pink-accent: #f4b3c2;
+  --pink-light: #f8d4dd;
+  --pink-dark: #e89baf;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-noto-sans-jp);
+  
+  --color-pink-500: #ed93e3;
+  --color-pink-400: #f8d4dd;
+  --color-pink-600: #e89baf;
+  --color-pink-300: #fae6eb;
+  --color-pink-100: #fdf5f7;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-noto-sans-jp), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
