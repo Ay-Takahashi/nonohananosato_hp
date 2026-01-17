@@ -1,0 +1,32 @@
+{
+  "単品メニュー": {
+    "commonNote": "",
+    "commonPrice": null,
+    "list": [
+      { "name": "だんご汁", "price": 900 },
+      { "name": "とり天", "price": 900 },
+      { "name": "アジフライ", "price": 350 }
+    ]
+  },
+  "酒類": {
+    "commonNote": "",
+    "commonPrice": null,
+    "list": [
+      { "name": "生ビール", "price": 700 },
+      { "name": "ビンビール", "price": 700 },
+      { "name": "ノンアルコール", "price": 500 },
+      { "name": "日本酒 1合", "price": 500, "note": "2合900円" }
+    ]
+  },
+  "ソフトドリンク": {
+    "commonNote": "",
+    "commonPrice": 300,
+    "list": [
+      { "name": "ウーロン茶" },
+      { "name": "コーラ" },
+      { "name": "オレンジ" },
+      { "name": "ジンジャーエール" },
+      { "name": "カルピス" }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "facilityName": "くじゅう野の花の郷",
+  "address": {
+    "postalCode": "〒879-4911",
+    "full": "大分県玖珠郡九重町大字田野1672-18"
+  },
+  "businessHours": {
+    "restaurant": {
+      "hours": "午前 １０：００～午後 ４：００",
+      "note": "※団体様は営業時間にかかわらず御夕食のご予約も承ります。"
+    },
+    "shop": {
+      "hours": "午前 １０：００～午後 ４：００",
+      "note": ""
+    }
+  },
+  "closedDays": "不定休",
+  "parking": "大型10台　普通50台（無料）",
+  "contact": {
+    "tel": "0973-79-3375",
+    "fax": "0973-79-3135",
+    "email": "info@nonohananosato.jp"
+  }
+}

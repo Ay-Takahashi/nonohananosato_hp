@@ -1,13 +1,36 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import photoMenuData from '@/data/photoMenu.json';
+import simpleMenuData from '@/data/simpleMenu.json';
+import groupMenuData from '@/data/groupMenu.json';
 
 interface MenuItem {
   name: string;
   description: string;
   price: number;
+  image?: string;
+}
+
+interface MenuCategory {
+  categoryName: string;
+  description: string;
+  menuItems: MenuItem[];
+}
+
+interface OtherMenuItem {
+  name: string;
+  price?: number | null;
+  note?: string;
+}
+
+interface OtherMenuCategory {
+  commonNote?: string;
+  commonPrice?: number | null;
+  list: OtherMenuItem[];
 }
 
 interface CourseMenu {
@@ -15,98 +38,140 @@ interface CourseMenu {
   description: string;
   price: number;
   items: string[];
-  minPeople: number;
+  minPeople?: number;
+  image?: string;
 }
 
-const generalMenuItems: MenuItem[] = [
-  {
-    name: '季節の定食',
-    description: '季節の食材を使った日替わり定食。メイン料理、ご飯、味噌汁、小鉢付き',
-    price: 1500,
-  },
-  {
-    name: '特選天ぷら定食',
-    description: '新鮮な魚介と季節の野菜の天ぷら定食',
-    price: 1800,
-  },
-  {
-    name: '刺身定食',
-    description: '本日の新鮮な刺身盛り合わせ',
-    price: 2000,
-  },
-  {
-    name: '野の花の郷御膳',
-    description: '当店自慢の料理を少しずつ楽しめる豪華な御膳',
-    price: 2500,
-  },
-  {
-    name: '焼き魚定食',
-    description: '本日の焼き魚、ご飯、味噌汁、小鉢付き',
-    price: 1600,
-  },
-  {
-    name: '煮魚定食',
-    description: '旬の魚の煮付け、ご飯、味噌汁、小鉢付き',
-    price: 1600,
-  },
-];
-
-const courseMenus: CourseMenu[] = [
-  {
-    name: '雅コース',
-    description: '気軽に楽しめるお手頃コース',
-    price: 4000,
-    minPeople: 4,
-    items: [
-      '前菜三種盛り',
-      'お造り盛り合わせ',
-      '季節の焼き物',
-      '煮物',
-      '揚げ物',
-      '食事(ご飯・味噌汁・香の物)',
-      'デザート',
-    ],
-  },
-  {
-    name: '華コース',
-    description: '会食や接待に最適な本格コース',
-    price: 6000,
-    minPeople: 4,
-    items: [
-      '季節の前菜五種盛り',
-      '本日のお造り盛り合わせ',
-      '特選焼き物',
-      '季節の煮物',
-      '天ぷら盛り合わせ',
-      '特製茶碗蒸し',
-      '食事(ご飯・味噌汁・香の物)',
-      'デザート',
-    ],
-  },
-  {
-    name: '極コース',
-    description: '最上級のおもてなしコース',
-    price: 8000,
-    minPeople: 4,
-    items: [
-      '特選前菜七種盛り',
-      '本日の特選お造り盛り合わせ',
-      '極上焼き物(魚・肉)',
-      '旬の煮物',
-      '特選天ぷら盛り合わせ',
-      '特製茶碗蒸し',
-      '季節の一品料理',
-      '食事(ご飯・味噌汁・香の物)',
-      '特製デザート',
-    ],
-  },
-];
+const generalMenuCategories: MenuCategory[] = photoMenuData;
+const otherMenus: Record<string, OtherMenuCategory> = simpleMenuData as Record<string, OtherMenuCategory>;
+const courseMenus: CourseMenu[] = groupMenuData.courseMenus;
 
 type TabType = 'general' | 'group';
+
+// 団体メニューモーダルコンポーネント
+function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | null; isOpen: boolean; onClose: () => void }) {
+  if (!isOpen || !course) return null;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="bg-white rounded-lg overflow-hidden max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 閉じるボタン */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition"
+          aria-label="メニュー詳細を閉じる"
+        >
+          <svg className="w-6 h-6 text-main-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        {/* 画像 */}
+        {course.image && (
+          <div className="relative w-full h-80">
+            <Image
+              src={course.image}
+              alt={course.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
+            />
+          </div>
+        )}
+        
+        {/* コンテンツ */}
+        <div className="p-8">
+          <div className="bg-accent-500 text-white p-6 rounded-lg mb-6 text-center">
+            <h3 className="text-3xl font-bold mb-2">{course.name}</h3>
+            <p className="text-4xl font-bold">
+              ¥{course.price.toLocaleString()}
+            </p>
+            <p className="text-sm mt-2 text-white">
+              (お一人様・税込)
+            </p>
+          </div>
+          
+          <p className="text-main-500 text-lg mb-6">{course.description}</p>
+          
+          {course.items && course.items.length > 0 && (
+            <>
+              <h4 className="text-xl font-bold text-main-500 mb-4 border-b-2 border-accent-500 pb-2">お品書き</h4>
+              <ul className="space-y-3">
+                {course.items.map((item, itemIndex) => (
+                  <li key={itemIndex} className="text-main-500 flex items-start text-lg">
+                    <span className="text-accent-500 mr-3 font-bold">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// 団体メニューカードコンポーネント
+function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index: number; onClick: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden hover:shadow-xl hover:shadow-main-500/20 transition cursor-pointer flex flex-col h-full"
+      onClick={onClick}
+    >
+      {/* 画像 */}
+      {course.image && (
+        <div className="relative w-full h-48 group flex-shrink-0">
+          <Image
+            src={course.image}
+            alt={course.name}
+            fill
+            className="object-cover transition-transform group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 rounded-full px-4 py-2 text-main-500 text-sm font-semibold">
+              詳細を見る
+            </div>
+          </div>
+        </div>
+      )}
+      
+      <div className="bg-accent-500 text-white p-6 text-center flex-shrink-0">
+        <h3 className="text-2xl font-bold mb-2 min-h-[4rem] flex items-center justify-center">{course.name}</h3>
+        <p className="text-3xl font-bold">
+          ¥{course.price.toLocaleString()}
+        </p>
+        <p className="text-sm mt-2 text-white">
+          (お一人様・税込)
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 function MenuContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<TabType>('general');
+  const [selectedCourse, setSelectedCourse] = useState<CourseMenu | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const tab = searchParams.get('tab');
@@ -115,42 +180,35 @@ function MenuContent() {
     }
   }, [searchParams]);
 
-  return (
-    <div className="min-h-screen bg-black">
-      {/* ヒーローセクション */}
-      <section className="relative h-64 bg-gradient-to-r from-gray-900 via-black to-gray-900 flex items-center justify-center border-b border-pink-500/30">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-pink-500 mb-4">
-            メニュー
-          </h1>
-          <p className="text-lg text-gray-300">
-            季節の食材を活かした定食やコース料理
-          </p>
-        </motion.div>
-      </section>
+  const handleCourseClick = (course: CourseMenu) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedCourse(null), 300);
+  };
+
+  return (
+    <div className="min-h-screen bg-sub-200">
       {/* タブナビゲーション */}
-      <section className="bg-black border-b border-pink-500/30 sticky top-0 z-10 shadow-lg shadow-pink-500/10">
+      <section className="bg-main-600 border-b border-accent-500/30 sticky top-20 z-10">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex justify-center">
             <button
               onClick={() => setActiveTab('general')}
               className={`px-8 py-4 text-lg font-semibold transition-all relative ${
                 activeTab === 'general'
-                  ? 'text-pink-500'
-                  : 'text-gray-400 hover:text-pink-400'
+                  ? 'text-white'
+                  : 'text-white/60 hover:text-white'
               }`}
             >
-              一般メニュー
+              お品書き
               {activeTab === 'general' && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-pink-500"
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-accent-500"
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               )}
@@ -159,15 +217,15 @@ function MenuContent() {
               onClick={() => setActiveTab('group')}
               className={`px-8 py-4 text-lg font-semibold transition-all relative ${
                 activeTab === 'group'
-                  ? 'text-pink-500'
-                  : 'text-gray-400 hover:text-pink-400'
+                  ? 'text-white'
+                  : 'text-white/60 hover:text-white'
               }`}
             >
-              団体メニュー
+              団体様お食事プラン
               {activeTab === 'group' && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-pink-500"
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-accent-500"
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               )}
@@ -176,35 +234,158 @@ function MenuContent() {
         </div>
       </section>
 
+      {/* ヒーローセクション */}
+      <section className="relative h-64 bg-gradient-to-r from-main-400 via-main-500 to-main-400 flex items-center justify-center border-b-2 border-accent-500">
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center"
+        >
+          {activeTab === 'general' ? (
+            <>
+              <p className="text-lg text-white">
+                くじゅう野の花の郷で使用する食材は地元のものを第一に考えています。<br />
+                毎日、山で採取して揚げる山菜の天ぷらは香りや薬膳効果も高くご好評をいただいています。<br />
+                おいしい料理に欠かせない調味料の味噌・醤油にもこだわっています。<br />
+                生産者と協力して商品化された、優れた調味料を使用しています。
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-lg text-white">
+                “体にいいものをたべたい”そんな健康ブームである今、日本人が昔から食べていた薬膳効果のある山菜など旬の食材に当店はこだわっています。<br />
+                中には野草に近いものもありますが、野草の持つたくましい生命力は私たちのエネルギーの源にもつながるものだと信じています。
+              </p>
+            </>
+          )}
+        </motion.div>
+      </section>
+
       {/* コンテンツエリア */}
       <section className="py-16">
         {activeTab === 'general' ? (
           // 一般メニュー
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4 max-w-6xl">
+            {generalMenuCategories.map((category, categoryIndex) => (
+              <motion.div
+                key={categoryIndex}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="mb-16"
+              >
+                {/* カテゴリタイトル */}
+                <div className="mb-8 text-center">
+                  <h2 className="text-3xl font-bold text-main-500 mb-2">
+                    {category.categoryName}
+                  </h2>
+                  {category.description && (
+                    <p className="text-main-400 text-lg">{category.description}</p>
+                  )}
+                  <div className="mt-3 h-1 w-24 bg-accent-500 rounded mx-auto"></div>
+                </div>
+
+                {/* カテゴリ内のメニュー項目 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.menuItems.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-main-500/20 transition flex flex-col"
+                    >
+                      {/* 画像 */}
+                      {item.image && (
+                        <div className="relative w-full h-48">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      
+                      {/* テキスト部分 */}
+                      <div className="p-6 flex-1 flex flex-col">
+                        <h3 className="text-xl font-bold text-main-500 mb-2">{item.name}</h3>
+                        <p className="text-main-500 mb-4 flex-1 text-sm">{item.description}</p>
+                        <div className="text-right">
+                          <span className="text-2xl font-bold text-accent-500">
+                            ¥{item.price.toLocaleString()}
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+
+            {/* その他のメニュー */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-16"
             >
-              {generalMenuItems.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-900 border border-pink-500/30 rounded-lg p-6 hover:shadow-lg hover:shadow-pink-500/20 transition"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-2xl font-bold text-pink-500">{item.name}</h3>
-                    <span className="text-2xl font-bold text-pink-400">
-                      ¥{item.price.toLocaleString()}
-                    </span>
-                  </div>
-                  <p className="text-gray-300">{item.description}</p>
-                </motion.div>
-              ))}
+              <h2 className="text-3xl font-bold text-main-500 mb-8 text-center">その他のメニュー</h2>
+              
+              <div className="space-y-8">
+                {Object.entries(otherMenus).map(([category, categoryData], categoryIndex) => (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden"
+                  >
+                    <div className="bg-sub-400 px-6 py-3 border-b-2 border-main-500/20 flex items-baseline gap-3">
+                      <h3 className="text-lg font-bold text-main-500">{category}</h3>
+                      {categoryData.commonPrice && (
+                        <span className="text-base font-bold text-main-500">
+                          各 ¥{categoryData.commonPrice.toLocaleString()}
+                        </span>
+                      )}
+                      {categoryData.commonNote && (
+                        <span className="text-sm text-main-500">
+                          {categoryData.commonNote}
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        {categoryData.list.map((item, itemIndex) => (
+                          <div
+                            key={itemIndex}
+                            className="flex justify-between items-center py-2 px-3 bg-sub-200 rounded hover:bg-sub-300 transition"
+                          >
+                            <span className="text-main-500 text-sm">
+                              {item.name}
+                              {item.note && (
+                                <span className="text-main-400 text-xs ml-1">({item.note})</span>
+                              )}
+                            </span>
+                            {item.price !== undefined && item.price !== null && (
+                              <span className="text-main-500 font-semibold ml-2 whitespace-nowrap">
+                                ¥{item.price.toLocaleString()}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
 
             {/* 注意事項 */}
@@ -213,10 +394,10 @@ function MenuContent() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="mt-12 p-6 bg-gray-900 border border-pink-500/30 rounded-lg"
+              className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg"
             >
-              <h3 className="text-xl font-bold text-pink-500 mb-4">ご注文について</h3>
-              <ul className="space-y-2 text-gray-300">
+              <h3 className="text-xl font-bold text-main-500 mb-4">ご注文について</h3>
+              <ul className="space-y-2 text-main-500">
                 <li>• メニューは季節により変更する場合がございます</li>
                 <li>• 食材の仕入れ状況により、ご提供できない場合がございます</li>
                 <li>• アレルギーをお持ちの方は、事前にお申し付けください</li>
@@ -233,8 +414,8 @@ function MenuContent() {
               className="mt-12 text-center"
             >
               <a
-                href="tel:0123456789"
-                className="inline-block bg-pink-500 text-white px-8 py-4 rounded-full text-lg hover:bg-pink-600 transition shadow-lg shadow-pink-500/30"
+                href="tel:0973793375"
+                className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
               >
                 ご予約・お問い合わせ
               </a>
@@ -247,44 +428,24 @@ function MenuContent() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
               {courseMenus.map((course, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gray-900 border-2 border-pink-500/30 rounded-lg overflow-hidden hover:shadow-xl hover:shadow-pink-500/20 transition"
-                >
-                  <div className="bg-pink-500 text-white p-6 text-center">
-                    <h3 className="text-2xl font-bold mb-2">{course.name}</h3>
-                    <p className="text-3xl font-bold">
-                      ¥{course.price.toLocaleString()}
-                    </p>
-                    <p className="text-sm mt-2 text-pink-100">
-                      (お一人様・税込)
-                    </p>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-gray-300 mb-4">{course.description}</p>
-                    <div className="mb-4 text-sm text-gray-400">
-                      ※ {course.minPeople}名様より承ります
-                    </div>
-                    <h4 className="font-semibold text-pink-400 mb-3">お品書き</h4>
-                    <ul className="space-y-2">
-                      {course.items.map((item, itemIndex) => (
-                        <li key={itemIndex} className="text-gray-300 flex items-start">
-                          <span className="text-pink-500 mr-2">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
+                <CourseMenuCard 
+                  key={index} 
+                  course={course} 
+                  index={index} 
+                  onClick={() => handleCourseClick(course)}
+                />
               ))}
             </motion.div>
+
+            {/* モーダル */}
+            <CourseMenuModal 
+              course={selectedCourse} 
+              isOpen={isModalOpen} 
+              onClose={handleCloseModal} 
+            />
 
             {/* 注意事項 */}
             <motion.div
@@ -292,18 +453,28 @@ function MenuContent() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="mt-12 p-6 bg-gray-900 border border-pink-500/30 rounded-lg"
+              className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg"
             >
-              <h3 className="text-xl font-bold text-pink-500 mb-4">ご予約について</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• コース料理は2日前までのご予約が必要です</li>
-                <li>• 各コース4名様より承ります</li>
-                <li>• 10名様以上のご利用で個室をご用意いたします</li>
-                <li>• お料理内容は季節により変更する場合がございます</li>
-                <li>• アレルギーや苦手な食材がございましたら、ご予約時にお申し付けください</li>
-                <li>• 飲み放題プランもご用意しております(別途2,000円)</li>
-                <li>• キャンセルは前日までにお願いいたします</li>
+              <h3 className="text-xl font-bold text-main-500 mb-4">団体のお客様へ</h3>
+              <ul className="space-y-2 text-main-500 mb-8">
+                <li>• ご予算により会席メニューも承ります。</li>
+                <li>• 慶事・法事・大小の宴会など、小グループから団体様までご予算・お料理の内容のご相談を承ります。</li>
               </ul>
+
+              <div className="space-y-3 text-main-500">
+                <div className="flex items-start">
+                  <span className="font-semibold min-w-[140px]">駐車場：</span>
+                  <span>大型バス 10台、普通車 50台</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="font-semibold min-w-[140px]">営業時間：</span>
+                  <span>11:00〜14:00</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="font-semibold min-w-[140px]">席数：</span>
+                  <span>250席</span>
+                </div>
+              </div>
             </motion.div>
 
             {/* お問い合わせボタン */}
@@ -315,14 +486,11 @@ function MenuContent() {
               className="mt-12 text-center"
             >
               <a
-                href="tel:0123456789"
-                className="inline-block bg-pink-500 text-white px-8 py-4 rounded-full text-lg hover:bg-pink-600 transition shadow-lg shadow-pink-500/30"
+                href="tel:0973793375"
+                className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
               >
                 ご予約・お問い合わせ
               </a>
-              <p className="mt-4 text-gray-400">
-                お電話受付時間: 11:00〜20:00(水曜定休)
-              </p>
             </motion.div>
           </div>
         )}
@@ -334,8 +502,8 @@ function MenuContent() {
 export default function MenuPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-pink-500 text-xl">読み込み中...</div>
+      <div className="min-h-screen bg-sub-200 flex items-center justify-center">
+        <div className="text-main-500 text-xl">読み込み中...</div>
       </div>
     }>
       <MenuContent />

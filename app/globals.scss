@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+// =======================================
+// カラー変数定義
+// =======================================
+// ここでメイン・サブ・アクセントカラーを変更すると、
+// サイト全体の色が一括で変更されます
+// =======================================
+
+$color-main: #232523;      // メインカラー（ダークグレー）
+$color-sub: #d6d9d2;       // サブカラー（ライトグリーングレー）
+$color-accent: #a00;    // アクセントカラー（赤）
+$color-white: #ffffff;     // 白
+
+// テキストカラーの基本設定
+// 基本的にテキストは白かメインカラーを使用
+$text-primary: $color-white;      // 基本テキスト（白）
+$text-secondary: $color-main;     // サブテキスト（メインカラー）
+
+:root {
+  --background: #{$color-main};
+  --foreground: #{$color-white};
+  --main: #{$color-main};
+  --sub: #{$color-sub};
+  --accent: #{$color-accent};
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-noto-serif-jp);
+  
+  /* メインカラー - ダークグレー */
+  --color-main-500: #232523;
+  --color-main-400: #3a3c3a;
+  --color-main-600: #1a1b1a;
+  --color-main-300: #4f514f;
+  --color-main-100: #6f716f;
+  
+  /* サブカラー - ライトグリーングレー */
+  --color-sub-500: #d6d9d2;
+  --color-sub-400: #e0e3dc;
+  --color-sub-600: #c4c7c0;
+  --color-sub-300: #eaecea;
+  --color-sub-200: #f0f1ef;
+  --color-sub-100: #f7f8f7;
+  
+  /* アクセントカラー - 赤 */
+  --color-accent-500: #a00;
+  --color-accent-400: #e13661;
+  --color-accent-600: #b11339;
+  --color-accent-300: #eb5577;
+  --color-accent-100: #f58aa6;
+  
+  /* 後方互換性のためpinkをaccentにマッピング */
+  --color-pink-500: var(--color-accent-500);
+  --color-pink-400: var(--color-accent-400);
+  --color-pink-600: var(--color-accent-600);
+  --color-pink-300: var(--color-accent-300);
+  --color-pink-100: var(--color-accent-100);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-noto-sans-jp), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+

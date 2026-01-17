@@ -1,45 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import photoMenuData from '@/data/photoMenu.json';
 
 interface MenuItem {
   name: string;
   description: string;
   price: number;
+  image?: string;
 }
 
-const menuItems: MenuItem[] = [
-  {
-    name: '季節の定食',
-    description: '季節の食材を使った日替わり定食。メイン料理、ご飯、味噌汁、小鉢付き',
-    price: 1500,
-  },
-  {
-    name: '特選天ぷら定食',
-    description: '新鮮な魚介と季節の野菜の天ぷら定食',
-    price: 1800,
-  },
-  {
-    name: '刺身定食',
-    description: '本日の新鮮な刺身盛り合わせ',
-    price: 2000,
-  },
-  {
-    name: '野の花の郷御膳',
-    description: '当店自慢の料理を少しずつ楽しめる豪華な御膳',
-    price: 2500,
-  },
-  {
-    name: '焼き魚定食',
-    description: '本日の焼き魚、ご飯、味噌汁、小鉢付き',
-    price: 1600,
-  },
-  {
-    name: '煮魚定食',
-    description: '旬の魚の煮付け、ご飯、味噌汁、小鉢付き',
-    price: 1600,
-  },
-];
+interface MenuCategory {
+  categoryName: string;
+  description: string;
+  menuItems: MenuItem[];
+}
+
+const menuCategories: MenuCategory[] = photoMenuData;
 
 export default function GeneralMenuPage() {
   return (
@@ -64,26 +42,66 @@ export default function GeneralMenuPage() {
       {/* メニュー一覧 */}
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="space-y-8">
-            {menuItems.map((item, index) => (
+          {menuCategories.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="mb-16">
+              {/* カテゴリタイトル */}
               <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-white border border-amber-200 rounded-lg p-6 hover:shadow-lg transition"
+                className="mb-8"
               >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-2xl font-bold text-amber-900">{item.name}</h3>
-                  <span className="text-2xl font-bold text-amber-800">
-                    ¥{item.price.toLocaleString()}
-                  </span>
-                </div>
-                <p className="text-gray-600">{item.description}</p>
+                <h2 className="text-3xl font-bold text-amber-900 mb-2">
+                  {category.categoryName}
+                </h2>
+                {category.description && (
+                  <p className="text-gray-600 text-lg">{category.description}</p>
+                )}
+                <div className="mt-2 h-1 w-20 bg-amber-500 rounded"></div>
               </motion.div>
-            ))}
-          </div>
+
+              {/* カテゴリ内のメニュー項目 */}
+              <div className="space-y-8">
+                {category.menuItems.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-white border border-amber-200 rounded-lg overflow-hidden hover:shadow-lg transition"
+                  >
+                    <div className="flex flex-col md:flex-row">
+                      {/* 画像 */}
+                      {item.image && (
+                        <div className="relative w-full md:w-64 h-48 flex-shrink-0">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 256px"
+                          />
+                        </div>
+                      )}
+                      
+                      {/* テキスト部分 */}
+                      <div className="p-6 flex-1">
+                        <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
+                          <h3 className="text-2xl font-bold text-amber-900">{item.name}</h3>
+                          <span className="text-2xl font-bold text-amber-800">
+                            ¥{item.price.toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
 
           {/* 注意事項 */}
           <motion.div
@@ -111,7 +129,7 @@ export default function GeneralMenuPage() {
             className="mt-12 text-center"
           >
             <a
-              href="tel:0123456789"
+              href="tel:0973793375"
               className="inline-block bg-amber-800 text-white px-8 py-4 rounded-full text-lg hover:bg-amber-700 transition"
             >
               ご予約・お問い合わせ

@@ -1,6 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import menuData from '@/data/groupMenu.json';
 
 interface CourseMenu {
   name: string;
@@ -8,58 +10,10 @@ interface CourseMenu {
   price: number;
   items: string[];
   minPeople: number;
+  image?: string;
 }
 
-const courseMenus: CourseMenu[] = [
-  {
-    name: '雅コース',
-    description: '気軽に楽しめるお手頃コース',
-    price: 4000,
-    minPeople: 4,
-    items: [
-      '前菜三種盛り',
-      'お造り盛り合わせ',
-      '季節の焼き物',
-      '煮物',
-      '揚げ物',
-      '食事（ご飯・味噌汁・香の物）',
-      'デザート',
-    ],
-  },
-  {
-    name: '華コース',
-    description: '会食や接待に最適な本格コース',
-    price: 6000,
-    minPeople: 4,
-    items: [
-      '季節の前菜五種盛り',
-      '本日のお造り盛り合わせ',
-      '特選焼き物',
-      '季節の煮物',
-      '天ぷら盛り合わせ',
-      '特製茶碗蒸し',
-      '食事（ご飯・味噌汁・香の物）',
-      'デザート',
-    ],
-  },
-  {
-    name: '極コース',
-    description: '最上級のおもてなしコース',
-    price: 8000,
-    minPeople: 4,
-    items: [
-      '特選前菜七種盛り',
-      '本日の特選お造り盛り合わせ',
-      '極上焼き物（魚・肉）',
-      '旬の煮物',
-      '特選天ぷら盛り合わせ',
-      '特製茶碗蒸し',
-      '季節の一品料理',
-      '食事（ご飯・味噌汁・香の物）',
-      '特製デザート',
-    ],
-  },
-];
+const courseMenus: CourseMenu[] = menuData.courseMenus;
 
 export default function GroupMenuPage() {
   return (
@@ -94,6 +48,19 @@ export default function GroupMenuPage() {
                 viewport={{ once: true }}
                 className="bg-white border-2 border-amber-200 rounded-lg overflow-hidden hover:shadow-xl transition"
               >
+                {/* 画像 */}
+                {course.image && (
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={course.image}
+                      alt={course.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
+                
                 <div className="bg-amber-800 text-white p-6 text-center">
                   <h3 className="text-2xl font-bold mb-2">{course.name}</h3>
                   <p className="text-3xl font-bold">
@@ -151,7 +118,7 @@ export default function GroupMenuPage() {
             className="mt-12 text-center"
           >
             <a
-              href="tel:0123456789"
+              href="tel:0973793375"
               className="inline-block bg-amber-800 text-white px-8 py-4 rounded-full text-lg hover:bg-amber-700 transition"
             >
               ご予約・お問い合わせ

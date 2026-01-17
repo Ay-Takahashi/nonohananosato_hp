@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
+  --background: #0E3149;
   --foreground: #ffffff;
-  --pink-accent: #f4b3c2;
-  --pink-light: #f8d4dd;
-  --pink-dark: #e89baf;
+  --main: #0E3149;
+  --sub: #CEC4D8;
+  --accent: #a00;
 }
 
 @theme inline {
@@ -13,11 +13,33 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-noto-sans-jp);
   
-  --color-pink-500: #ed93e3;
-  --color-pink-400: #f8d4dd;
-  --color-pink-600: #e89baf;
-  --color-pink-300: #fae6eb;
-  --color-pink-100: #fdf5f7;
+  /* メインカラー - 濃紺 */
+  --color-main-500: #0E3149;
+  --color-main-400: #1a4762;
+  --color-main-600: #0a2438;
+  --color-main-300: #2d5d7b;
+  --color-main-100: #476f8d;
+  
+  /* サブカラー - ライトパープル */
+  --color-sub-500: #CEC4D8;
+  --color-sub-400: #dcd5e3;
+  --color-sub-600: #bfb3cd;
+  --color-sub-300: #e9e3ee;
+  --color-sub-100: #f4f1f7;
+  
+  /* アクセントカラー - 赤 */
+  --color-accent-500: #a00;
+  --color-accent-400: #e13661;
+  --color-accent-600: #b11339;
+  --color-accent-300: #eb5577;
+  --color-accent-100: #f58aa6;
+  
+  /* 後方互換性のためpinkをaccentにマッピング */
+  --color-pink-500: var(--color-accent-500);
+  --color-pink-400: var(--color-accent-400);
+  --color-pink-600: var(--color-accent-600);
+  --color-pink-300: var(--color-accent-300);
+  --color-pink-100: var(--color-accent-100);
 }
 
 body {

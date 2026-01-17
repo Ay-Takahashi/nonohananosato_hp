@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
-import "./globals.css";
+import { Noto_Serif_JP } from "next/font/google";
+import "./globals.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const notoSansJP = Noto_Sans_JP({
+const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
-  variable: "--font-noto-sans-jp",
+  variable: "--font-noto-serif-jp",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} antialiased`}>
+      <body className={`${notoSerifJP.variable} antialiased`}>
         <Header />
         <main className="pt-20">{children}</main>
         <Footer />
