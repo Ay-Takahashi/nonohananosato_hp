@@ -13,7 +13,7 @@ interface CourseMenu {
   image?: string;
 }
 
-const courseMenus: CourseMenu[] = menuData.courseMenus;
+const courseMenus: any = menuData.courseMenus;
 
 export default function GroupMenuPage() {
   return (
