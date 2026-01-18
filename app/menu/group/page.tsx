@@ -9,11 +9,11 @@ interface CourseMenu {
   description: string;
   price: number;
   items: string[];
-  minPeople: number;
+  minPeople?: number;
   image?: string;
 }
 
-const courseMenus: any = menuData.courseMenus;
+const courseMenus: CourseMenu[] = menuData.courseMenus;
 
 export default function GroupMenuPage() {
   return (
