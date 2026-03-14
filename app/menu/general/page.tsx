@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import photoMenuData from '@/data/photoMenu.json';
+import { transformMenuCategories } from '@/lib/utils';
 
 interface MenuItem {
   name: string;
@@ -17,7 +18,7 @@ interface MenuCategory {
   menuItems: MenuItem[];
 }
 
-const menuCategories: MenuCategory[] = photoMenuData;
+const menuCategories: MenuCategory[] = transformMenuCategories(photoMenuData as MenuCategory[]);
 
 export default function GeneralMenuPage() {
   return (

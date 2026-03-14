@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import photoMenuData from '@/data/photoMenu.json';
 import simpleMenuData from '@/data/simpleMenu.json';
 import groupMenuData from '@/data/groupMenu.json';
+import { transformMenuCategories, transformCourseMenuImages } from '@/lib/utils';
 
 interface MenuItem {
   name: string;
@@ -42,9 +43,9 @@ interface CourseMenu {
   image?: string;
 }
 
-const generalMenuCategories: MenuCategory[] = photoMenuData;
+const generalMenuCategories: MenuCategory[] = transformMenuCategories(photoMenuData as MenuCategory[]);
 const otherMenus: Record<string, OtherMenuCategory> = simpleMenuData as Record<string, OtherMenuCategory>;
-const courseMenus: CourseMenu[] = groupMenuData.courseMenus;
+const courseMenus: CourseMenu[] = transformCourseMenuImages(groupMenuData.courseMenus as CourseMenu[]);
 
 type TabType = 'general' | 'group';
 

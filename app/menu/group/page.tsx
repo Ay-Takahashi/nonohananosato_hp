@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import menuData from '@/data/groupMenu.json';
+import { transformCourseMenuImages } from '@/lib/utils';
 
 interface CourseMenu {
   name: string;
@@ -13,7 +14,7 @@ interface CourseMenu {
   image?: string;
 }
 
-const courseMenus: CourseMenu[] = menuData.courseMenus;
+const courseMenus: CourseMenu[] = transformCourseMenuImages(menuData.courseMenus as CourseMenu[]);
 
 export default function GroupMenuPage() {
   return (

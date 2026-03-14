@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
 import facilityInfo from '@/data/facilityInfo.json';
 import { useState, useEffect } from 'react';
+import { getImagePath } from '@/lib/utils';
 
 const slides = [
-  '/images/IMG_8327.JPG',
-  '/images/IMG_8338.JPG',
-  '/images/IMG_8339.JPG',
+  getImagePath('/images/IMG_8327.JPG'),
+  getImagePath('/images/IMG_8338.JPG'),
+  getImagePath('/images/IMG_8339.JPG'),
 ];
 
 export default function Home() {
