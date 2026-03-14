@@ -2,26 +2,54 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
 import facilityInfo from '@/data/facilityInfo.json';
+import { useState, useEffect } from 'react';
+
+const slides = [
+  '/images/IMG_8327.JPG',
+  '/images/IMG_8338.JPG',
+  '/images/IMG_8339.JPG',
+];
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 10000); // 5秒ごとに切り替え
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* 背景画像 */}
+        {/* 背景画像スライドショー */}
         <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/ryouri-kago.jpg"
-            alt="料理背景"
-            fill
-            className="object-cover"
-            priority
-          />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={slides[currentSlide]}
+                alt={`スライド画像 ${currentSlide + 1}`}
+                fill
+                className="object-cover"
+                priority={currentSlide === 0}
+              />
+            </motion.div>
+          </AnimatePresence>
           {/* オーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-black/50 to-gray-900/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
         </div>
         
         <div className="container mx-auto px-4 text-center">
@@ -30,7 +58,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-accent-500 mb-6">
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6">
               野の花の郷
             </h1>
             <p className="text-xl md:text-2xl text-white mb-8">
@@ -83,13 +111,13 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h3 className="text-3xl font-bold text-main-500 mb-6">
-                地元の食材を活かした<br />心温まる料理
+                くじゅう連山の麓で<br />四季を味わう
               </h3>
               <p className="text-main-500 leading-relaxed mb-4">
-                私たちは、地元の新鮮な食材を厳選し、伝統的な調理法と現代的なアレンジを融合させた料理をご提供しています。
+                雄大なくじゅう連山の麓で、四季折々の景色の中で味合うお料理
               </p>
               <p className="text-main-500 leading-relaxed">
-                お客様に心からくつろいでいただける空間で、季節の味わいをお楽しみください。
+                お客様に安心して美味しく、召し上がっていただきたい思いから、旬の食材、すべてのお料理に真心と手間暇をかけております
               </p>
             </motion.div>
 
