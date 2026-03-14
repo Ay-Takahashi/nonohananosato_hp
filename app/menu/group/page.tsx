@@ -70,9 +70,13 @@ export default function GroupMenuPage() {
                   <p className="text-sm mt-2 text-amber-100">
                     （お一人様・税込）
                   </p>
+                  {course.description && (
+                    <p className="text-sm mt-3 text-amber-100">
+                      {course.description}
+                    </p>
+                  )}
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600 mb-4">{course.description}</p>
                   <div className="mb-4 text-sm text-gray-500">
                     ※ {course.minPeople}名様より承ります
                   </div>

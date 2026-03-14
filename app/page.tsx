@@ -184,13 +184,14 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="flex justify-center max-w-5xl mx-auto">
             {/* 一般メニュー */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true }}
+              className="hidden"
             >
               <Link
                 href="/menu?tab=general"
@@ -219,6 +220,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
+              className="w-full max-w-md"
             >
               <Link
                 href="/menu?tab=group"

@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import photoMenuData from '@/data/photoMenu.json';
 import simpleMenuData from '@/data/simpleMenu.json';
 import groupMenuData from '@/data/groupMenu.json';
+import facilityInfo from '@/data/facilityInfo.json';
 import { transformMenuCategories, transformCourseMenuImages } from '@/lib/utils';
 
 interface MenuItem {
@@ -170,7 +171,7 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
 
 function MenuContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState<TabType>('general');
+  const [activeTab, setActiveTab] = useState<TabType>('group');
   const [selectedCourse, setSelectedCourse] = useState<CourseMenu | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -199,7 +200,7 @@ function MenuContent() {
           <div className="flex justify-center">
             <button
               onClick={() => setActiveTab('general')}
-              className={`px-8 py-4 text-lg font-semibold transition-all relative ${
+              className={`hidden px-8 py-4 text-lg font-semibold transition-all relative ${
                 activeTab === 'general'
                   ? 'text-white'
                   : 'text-white/60 hover:text-white'
@@ -268,7 +269,7 @@ function MenuContent() {
       <section className="py-16">
         {activeTab === 'general' ? (
           // 一般メニュー
-          <div className="container mx-auto px-4 max-w-6xl">
+          <div className="hidden container mx-auto px-4 max-w-6xl">
             {generalMenuCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -465,15 +466,15 @@ function MenuContent() {
               <div className="space-y-3 text-main-500">
                 <div className="flex items-start">
                   <span className="font-semibold min-w-[140px]">駐車場：</span>
-                  <span>大型バス 10台、普通車 50台</span>
+                  <span>{facilityInfo.parking}</span>
                 </div>
                 <div className="flex items-start">
                   <span className="font-semibold min-w-[140px]">営業時間：</span>
-                  <span>11:00〜14:00</span>
+                  <span>{facilityInfo.businessHours.restaurant.hours}</span>
                 </div>
                 <div className="flex items-start">
                   <span className="font-semibold min-w-[140px]">席数：</span>
-                  <span>250席</span>
+                  <span>{facilityInfo.seating}</span>
                 </div>
               </div>
             </motion.div>

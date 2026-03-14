@@ -4,43 +4,104 @@
       "name": "海鮮セイロ蒸し鶏陶板御膳",
       "description": "",
       "price": 3200,
-      "image": "/images/ryouri-kago.jpg",
+      "image": "/images/foods/g_kaisenseiro.jpg",
       "items": [
       ]
     },
     {
-      "name": "華コース",
-      "description": "会食や接待に最適な本格コース",
-      "price": 6000,
-      "minPeople": 4,
-      "image": "/images/ryouri-kago.jpg",
+      "name": "花かご旬膳 ポーク鍋膳",
+      "description": "ミニうどんorミニそば付き ２６００円（税込）",
+      "price": 2300,
+      "image": "/images/foods/g_hanakagonabezen.jpg",
       "items": [
-        "季節の前菜五種盛り",
-        "本日のお造り盛り合わせ",
-        "特選焼き物",
-        "季節の煮物",
-        "天ぷら盛り合わせ",
-        "特製茶碗蒸し",
-        "食事（ご飯・味噌汁・香の物）",
-        "デザート"
       ]
     },
     {
-      "name": "極コース",
-      "description": "最上級のおもてなしコース",
-      "price": 8000,
-      "minPeople": 4,
-      "image": "/images/ryouri-kago.jpg",
+      "name": "花かご旬膳 とり鍋膳",
+      "description": "ミニうどんorミニそば付き ２６００円（税込）",
+      "price": 2300,
+      "image": "/images/foods/g_hanakagonabezen.jpg",
       "items": [
-        "特選前菜七種盛り",
-        "本日の特選お造り盛り合わせ",
-        "極上焼き物（魚・肉）",
-        "旬の煮物",
-        "特選天ぷら盛り合わせ",
-        "特製茶碗蒸し",
-        "季節の一品料理",
-        "食事（ご飯・味噌汁・香の物）",
-        "特製デザート"
+      ]
+    },
+    {
+      "name": "おおいた豊後牛陶板御膳",
+      "description": "",
+      "price": 4500,
+      "image": "/images/foods/g_toubanyaki.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "おおいた豊後牛しゃぶしゃぶ御膳",
+      "description": "",
+      "price": 4500,
+      "image": "/images/foods/g_bungogyusyabusyabugozen.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "九重夢ポークしゃぶしゃぶ御膳",
+      "description": "",
+      "price": 3200,
+      "image": "/images/foods/g_yumepoksyabusyabugozen.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "大分鶏陶板御膳",
+      "description": "",
+      "price": 1700,
+      "image": "/images/foods/g_toritouban.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "花かご旬膳 ポーク陶板焼き",
+      "description": "ミニうどんorミニそば付き 2600円（税込）",
+      "price": 2300,
+      "image": "/images/foods/g_hanakagoporktouban.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "花かご旬膳 鶏陶板焼き",
+      "description": "ミニうどんorミニそば付き 2600円（税込）",
+      "price": 2300,
+      "image": "/images/foods/g_hanakagotoritouban.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "九重だんご汁御膳",
+      "description": "",
+      "price": 1750,
+      "image": "/images/foods/g_dangojirugozen.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "【韓国風】九重だんご汁御膳",
+      "description": "当店のだんご汁を、日本の味噌とコチュジャン・豆板醤・甜麺醤等を合わせて韓国風にアレンジしました。お客様のご要望に応じた味付けのご相談を承ります。",
+      "price": 1750,
+      "image": "/images/foods/g_kankokufudangojiruzen.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "九重夢ポーク陶板御膳",
+      "description": "",
+      "price": 1750,
+      "image": "/images/foods/g_yumeporkmanpuku.jpg",
+      "items": [
+      ]
+    },
+    {
+      "name": "九重夢ポーク柳川風鍋御膳（冬季限定）",
+      "description": "",
+      "price": 1750,
+      "image": "/images/foods/g_yumeporknabe.jpg",
+      "items": [
       ]
     }
   ]
