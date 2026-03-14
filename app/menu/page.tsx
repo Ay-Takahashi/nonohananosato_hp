@@ -104,9 +104,12 @@ function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | nul
             <p className="text-sm mt-2 text-white">
               (お一人様・税込)
             </p>
+            {course.description && (
+              <p className="text-sm mt-3 text-white/90">
+                {course.description}
+              </p>
+            )}
           </div>
-          
-          <p className="text-main-500 text-lg mb-6">{course.description}</p>
           
           {course.items && course.items.length > 0 && (
             <>
@@ -156,14 +159,19 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
         </div>
       )}
       
-      <div className="bg-accent-500 text-white p-6 text-center flex-shrink-0">
-        <h3 className="text-2xl font-bold mb-2 min-h-[4rem] flex items-center justify-center">{course.name}</h3>
+      <div className="bg-accent-500 text-white p-6 text-center flex-grow flex flex-col justify-center">
+        <h3 className="text-2xl font-bold mb-2">{course.name}</h3>
         <p className="text-3xl font-bold">
           ¥{course.price.toLocaleString()}
         </p>
         <p className="text-sm mt-2 text-white">
           (お一人様・税込)
         </p>
+        {course.description && (
+          <p className="text-sm mt-3 text-white/90">
+            {course.description}
+          </p>
+        )}
       </div>
     </motion.div>
   );

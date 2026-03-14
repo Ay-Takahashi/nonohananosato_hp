@@ -76,20 +76,28 @@ export default function GroupMenuPage() {
                     </p>
                   )}
                 </div>
-                <div className="p-6">
-                  <div className="mb-4 text-sm text-gray-500">
-                    ※ {course.minPeople}名様より承ります
+                {(course.minPeople || (course.items && course.items.length > 0)) && (
+                  <div className="p-6">
+                    {course.minPeople && (
+                      <div className="mb-4 text-sm text-gray-500">
+                        ※ {course.minPeople}名様より承ります
+                      </div>
+                    )}
+                    {course.items && course.items.length > 0 && (
+                      <>
+                        <h4 className="font-semibold text-amber-900 mb-3">お品書き</h4>
+                        <ul className="space-y-2">
+                          {course.items.map((item, itemIndex) => (
+                            <li key={itemIndex} className="text-gray-700 flex items-start">
+                              <span className="text-amber-600 mr-2">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
-                  <h4 className="font-semibold text-amber-900 mb-3">お品書き</h4>
-                  <ul className="space-y-2">
-                    {course.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="text-gray-700 flex items-start">
-                        <span className="text-amber-600 mr-2">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                )}
               </motion.div>
             ))}
           </div>
