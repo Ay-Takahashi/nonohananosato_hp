@@ -184,7 +184,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* 一般メニュー */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -239,36 +239,6 @@ export default function Home() {
                   </p>
                 </div>
               </Link>
-            </motion.div>
-
-            {/* 併設カフェ */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <a
-                href="https://good-blue.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
-              >
-                <div className="relative h-64 bg-main-400">
-                  {/* 画像プレースホルダー */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                    <p className="text-2xl font-bold">カフェ写真</p>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
-                    併設カフェ
-                  </h3>
-                  <p className="text-white">
-                    こだわりのコーヒーとスイーツをお楽しみいただけます。
-                  </p>
-                </div>
-              </a>
             </motion.div>
           </div>
         </div>
@@ -368,6 +338,41 @@ export default function Home() {
               ></iframe>
             </motion.div>
           </div>
+
+          {/* 併設カフェ情報 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-16 max-w-4xl mx-auto"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <a
+                href="https://good-blue.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 group"
+              >
+                <div className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-all overflow-hidden">
+                  <Image
+                    src={getImagePath('/images/goodbluelogo.jpg')}
+                    alt="Good Blue Cafe Logo"
+                    width={200}
+                    height={100}
+                    className="object-contain group-hover:scale-105 transition-transform"
+                  />
+                </div>
+              </a>
+              <div className="flex-1 text-center md:text-left">
+                <p className="text-main-500 leading-relaxed mb-4">
+                  犬と一緒にゆっくりできる花屋＆カフェ
+                  <br/>
+                  ドッグランも併設しています
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
