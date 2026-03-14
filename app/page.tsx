@@ -143,7 +143,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative h-80 bg-main-500 border border-accent-500/30 rounded-lg overflow-hidden"
+              className="relative h-80 bg-main-500 overflow-hidden"
             >
               {/* レストラン画像スライドショー */}
               <AnimatePresence mode="wait">
@@ -224,13 +224,15 @@ export default function Home() {
             >
               <Link
                 href="/menu?tab=group"
-                className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
+                className="block bg-main-600 overflow-hidden transition group"
               >
                 <div className="relative h-64 bg-main-400">
-                  {/* 画像プレースホルダー */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                    <p className="text-2xl font-bold">料理写真</p>
-                  </div>
+                  <Image
+                    src={getImagePath('/images/foods/IMG_8332.JPG')}
+                    alt="団体メニュー"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
@@ -249,19 +251,6 @@ export default function Home() {
       {/* アクセスセクション */}
       <section id="access" className="py-20 border-t border-accent-500/30 bg-sub-100">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-main-500 mb-4">
-              Access
-            </h2>
-            <p className="text-xl text-main-500">アクセス</p>
-          </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -326,7 +315,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative h-80 bg-main-500 border border-accent-500/30 rounded-lg overflow-hidden"
+              className="relative h-80 bg-main-500 overflow-hidden"
             >
               {/* Google Maps */}
               <iframe

@@ -138,7 +138,7 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden hover:shadow-xl hover:shadow-main-500/20 transition cursor-pointer flex flex-col h-full"
+      className="bg-white border-2 border-main-500/20 overflow-hidden hover:shadow-xl hover:shadow-main-500/20 transition cursor-pointer flex flex-col h-full"
       onClick={onClick}
     >
       {/* 画像 */}
@@ -307,7 +307,7 @@ function MenuContent() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-main-500/20 transition flex flex-col"
+                      className="bg-white border-2 border-main-500/20 overflow-hidden hover:shadow-lg hover:shadow-main-500/20 transition flex flex-col"
                     >
                       {/* 画像 */}
                       {item.image && (
@@ -356,7 +356,7 @@ function MenuContent() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white border-2 border-main-500/20 rounded-lg overflow-hidden"
+                    className="bg-white border-2 border-main-500/20 overflow-hidden"
                   >
                     <div className="bg-sub-400 px-6 py-3 border-b-2 border-main-500/20 flex items-baseline gap-3">
                       <h3 className="text-lg font-bold text-main-500">{category}</h3>
