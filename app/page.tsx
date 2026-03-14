@@ -14,13 +14,29 @@ const slides = [
   getImagePath('/images/IMG_8339.JPG'),
 ];
 
+const restaurantSlides = [
+  getImagePath('/images/resutorann/IMG_8328.JPG'),
+  getImagePath('/images/resutorann/IMG_8333.JPG'),
+  getImagePath('/images/resutorann/restran001.jpg'),
+  getImagePath('/images/resutorann/restran002.jpg'),
+];
+
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentRestaurantSlide, setCurrentRestaurantSlide] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 10000); // 5秒ごとに切り替え
+    }, 10000); // 10秒ごとに切り替え
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentRestaurantSlide((prev) => (prev + 1) % restaurantSlides.length);
+    }, 5000); // 5秒ごとに切り替え
 
     return () => clearInterval(timer);
   }, []);
@@ -129,10 +145,25 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative h-80 bg-main-500 border border-accent-500/30 rounded-lg overflow-hidden"
             >
-              {/* 画像プレースホルダー */}
-              <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                <p className="text-2xl font-bold">店内写真</p>
-              </div>
+              {/* レストラン画像スライドショー */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentRestaurantSlide}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={restaurantSlides[currentRestaurantSlide]}
+                    alt={`店内写真 ${currentRestaurantSlide + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
           </div>
         </div>
@@ -153,7 +184,7 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* 一般メニュー */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -208,6 +239,36 @@ export default function Home() {
                   </p>
                 </div>
               </Link>
+            </motion.div>
+
+            {/* 併設カフェ */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <a
+                href="https://good-blue.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
+              >
+                <div className="relative h-64 bg-main-400">
+                  {/* 画像プレースホルダー */}
+                  <div className="absolute inset-0 flex items-center justify-center text-white/30">
+                    <p className="text-2xl font-bold">カフェ写真</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
+                    併設カフェ
+                  </h3>
+                  <p className="text-white">
+                    こだわりのコーヒーとスイーツをお楽しみいただけます。
+                  </p>
+                </div>
+              </a>
             </motion.div>
           </div>
         </div>
@@ -295,10 +356,16 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative h-80 bg-main-500 border border-accent-500/30 rounded-lg overflow-hidden"
             >
-              {/* 地図プレースホルダー */}
-              <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                <p className="text-2xl font-bold">Google Maps</p>
-              </div>
+              {/* Google Maps */}
+              <iframe
+                src="https://www.google.com/maps?q=大分県玖珠郡九重町大字田野1672-18&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </motion.div>
           </div>
         </div>

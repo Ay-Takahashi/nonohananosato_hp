@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FiInstagram } from 'react-icons/fi';
 import facilityInfo from '@/data/facilityInfo.json';
+import { getImagePath } from '@/lib/utils';
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
           <div>
             <div className="mb-4">
               <Image 
-                src="/images/logo.png" 
+                src={getImagePath('/images/logo.png')} 
                 alt="野々花の里" 
                 width={180} 
                 height={54}

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FiMenu, FiX, FiPhone } from 'react-icons/fi';
+import { getImagePath } from '@/lib/utils';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Header() {
           {/* ロゴ */}
           <Link href="/" className="flex items-center">
             <Image 
-              src="/images/logo.png" 
+              src={getImagePath('/images/logo.png')} 
               alt="野々花の里" 
               width={200} 
               height={60}
