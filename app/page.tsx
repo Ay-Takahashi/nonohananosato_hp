@@ -11,7 +11,7 @@ import { getImagePath } from '@/lib/utils';
 const slides = [
   getImagePath('/images/IMG_8327.JPG'),
   getImagePath('/images/IMG_8338.JPG'),
-  getImagePath('/images/IMG_8339.JPG'),
+  getImagePath('/images/九重“夢”大吊橋_秋.jpg'),
 ];
 
 const restaurantSlides = [
