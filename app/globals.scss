@@ -60,13 +60,50 @@ $text-secondary: $color-main;     // サブテキスト（メインカラー）
   --color-pink-100: var(--color-accent-100);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-klee-one), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
+// コンテンツエリアのみに透かし背景を表示
+.content-watermark {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--watermark-bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.4;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  // セクション内のコンテンツを透かし背景より前面に
+  > section {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// 透かし背景が見えるように半透明の背景色を設定
+.bg-sub-transparent {
+  background-color: rgba(247, 248, 247, 0.85); // sub-100の半透明版
+}
+
+.bg-main-transparent {
+  background-color: rgba(35, 37, 35, 0.85); // main-500の半透明版
 }
 

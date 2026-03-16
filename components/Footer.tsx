@@ -6,7 +6,7 @@ import { getImagePath } from '@/lib/utils';
 
 export default function Footer() {
   return (
-    <footer className="bg-main-500 text-white border-t border-accent-500/30">
+    <footer className="bg-main-600 text-white border-t border-accent-500/30 font-bold">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* ロゴと説明 */}

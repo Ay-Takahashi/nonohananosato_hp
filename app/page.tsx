@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden z-10 bg-black">
         {/* 背景画像スライドショー */}
         <div className="absolute inset-0 -z-10">
           <AnimatePresence mode="wait">
@@ -74,10 +74,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
           >
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6">
-              野の花の郷
-            </h1>
+            <div className="mb-6">
+              <Image
+                src={getImagePath('/images/logo.png')}
+                alt="野の花の郷"
+                width={400}
+                height={400}
+                className="w-auto h-32 md:h-48"
+                priority
+              />
+            </div>
             <p className="text-xl md:text-2xl text-white mb-8">
               心を込めた料理でおもてなし
             </p>
@@ -108,8 +116,10 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* コンテンツエリア（透かし背景適用） */}
+      <div className="content-watermark">
       {/* コンセプトセクション */}
-      <section id="concept" className="pt-1 pb-10 border-t border-accent-500/30 bg-sub-100">
+      <section id="concept" className="pt-1 pb-10 border-t border-accent-500/30 bg-sub-transparent">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -170,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* メニュー紹介セクション */}
-      <section className="py-20 bg-main-500 border-t border-accent-500/30">
+      <section className="py-20 bg-main-transparent border-t border-accent-500/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -249,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* アクセスセクション */}
-      <section id="access" className="py-20 border-t border-accent-500/30 bg-sub-100">
+      <section id="access" className="py-20 border-t border-accent-500/30 bg-sub-transparent">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <motion.div
@@ -366,6 +376,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      </div>
     </div>
   );
 }
