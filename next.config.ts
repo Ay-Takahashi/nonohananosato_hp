@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === 'production';
-const basePath = isProd ? '/nonohananosato_hp' : '';
+const basePath = ''; // 独自ドメイン使用時はベースパス不要
 
 const nextConfig: NextConfig = {
   /* config options here */
