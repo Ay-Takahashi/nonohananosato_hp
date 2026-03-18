@@ -469,6 +469,10 @@ function MenuContent() {
               <ul className="space-y-2 text-main-500 mb-8">
                 <li>• ご予算により会席メニューも承ります。</li>
                 <li>• 慶事・法事・大小の宴会など、小グループから団体様までご予算・お料理の内容のご相談を承ります。</li>
+                <li>• お料理内容は季節により変更する場合がございます</li>
+                <li>• アレルギーや苦手な食材がございましたら、ご予約時にお申し付けください</li>
+                <li>• コース料理は前日までのご予約が必要です</li>
+                <li>• キャンセルは前日までにお願いいたします</li>
               </ul>
 
               <div className="space-y-3 text-main-500">
@@ -501,6 +505,9 @@ function MenuContent() {
               >
                 ご予約・お問い合わせ
               </a>
+              <p className="mt-4 text-gray-600">
+                お電話受付時間: 9:00〜20:00
+              </p>
             </motion.div>
           </div>
         )}

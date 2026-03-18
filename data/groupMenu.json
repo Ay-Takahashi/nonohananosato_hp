@@ -33,6 +33,14 @@
       ]
     },
     {
+      "name": "おおいた和牛味わい膳",
+      "description": "おおいた和牛の陶板焼きとしゃぶしゃぶを一度に味わえる贅沢な御膳です。",
+      "price": 5000,
+      "image": "/images/foods/g_ajiwaiwagyu.jpg",
+      "items": [
+      ]
+    },
+    {
       "name": "おおいた豊後牛しゃぶしゃぶ御膳",
       "description": "",
       "price": 4500,
@@ -43,7 +51,7 @@
     {
       "name": "九重夢ポークしゃぶしゃぶ御膳",
       "description": "",
-      "price": 3200,
+      "price": 3000,
       "image": "/images/foods/g_yumepoksyabusyabugozen.jpg",
       "items": [
       ]
