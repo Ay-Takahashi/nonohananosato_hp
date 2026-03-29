@@ -1,49 +1,43 @@
 [
   {
-    "categoryName": "ランチメニュー",
-    "description": "平日限定",
+    "categoryName": "定食メニュー",
+    "description": "",
     "menuItems": [
+      {
+        "name": "とり天定食",
+        "description": "",
+        "price": 1300,
+        "image": "/images/foods/toriten.jpg"
+      },
+      {
+        "name": "だんご汁定食",
+        "description": "",
+        "price": 1200,
+        "image": "/images/foods/dangojiru.jpg"
+      },
+      {
+        "name": "やく麺定食",
+        "description": "",
+        "price": 1200,
+        "image": "/images/foods/yakumen.jpg"
+      },
+      {
+        "name": "鶏ごぼう丼",
+        "description": "大盛り 1150円",
+        "price": 1000,
+        "image": "/images/foods/tori_gobou.jpg"
+      },
+      {
+        "name": "おろしハンバーグランチ",
+        "description": "",
+        "price": 1100,
+        "image": "/images/foods/oroshi_hamburg.jpg"
+      },
       {
         "name": "デミグラスハンバーグランチ",
         "description": "",
         "price": 1100,
-        "image": "/images/demi-Hamburg.jpg"
-      },
-      {
-        "name": "おろしハンバーグランチ",
-        "description": "新鮮な魚介と季節の野菜の天ぷら定食",
-        "price": 1800,
-        "image": "/images/oroshi-Hamburg.jpg"
-      },
-      {
-        "name": "刺身定食",
-        "description": "本日の新鮮な刺身盛り合わせ",
-        "price": 2000,
-        "image": "/images/ryouri-kago.jpg"
-      },
-      {
-        "name": "野の花の郷御膳",
-        "description": "当店自慢の料理を少しずつ楽しめる豪華な御膳",
-        "price": 2500,
-        "image": "/images/ryouri-kago.jpg"
-      }
-    ]
-  },
-  {
-    "categoryName": "魚料理",
-    "description": "",
-    "menuItems": [
-      {
-        "name": "焼き魚定食",
-        "description": "本日の焼き魚、ご飯、味噌汁、小鉢付き",
-        "price": 1600,
-        "image": "/images/ryouri-kago.jpg"
-      },
-      {
-        "name": "煮魚定食",
-        "description": "旬の魚の煮付け、ご飯、味噌汁、小鉢付き",
-        "price": 1600,
-        "image": "/images/ryouri-kago.jpg"
+        "image": "/images/foods/demi_hamburg.jpg"
       }
     ]
   }

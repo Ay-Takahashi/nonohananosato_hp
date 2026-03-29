@@ -179,7 +179,7 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
 
 function MenuContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState<TabType>('group');
+  const [activeTab, setActiveTab] = useState<TabType>('general');
   const [selectedCourse, setSelectedCourse] = useState<CourseMenu | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -208,7 +208,7 @@ function MenuContent() {
           <div className="flex justify-center">
             <button
               onClick={() => setActiveTab('general')}
-              className={`hidden px-8 py-4 text-lg font-semibold transition-all relative ${
+              className={`px-8 py-4 text-lg font-semibold transition-all relative ${
                 activeTab === 'general'
                   ? 'text-white'
                   : 'text-white/60 hover:text-white'
@@ -277,7 +277,7 @@ function MenuContent() {
       <section className="py-16">
         {activeTab === 'general' ? (
           // 一般メニュー
-          <div className="hidden container mx-auto px-4 max-w-6xl">
+          <div className="container mx-auto px-4 max-w-6xl">
             {generalMenuCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}

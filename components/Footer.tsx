@@ -41,7 +41,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/menu/general" className="text-white hover:text-white/80 transition">
+                <Link href="/menu?tab=general" className="text-white hover:text-white/80 transition">
                   一般メニュー
                 </Link>
               </li>
