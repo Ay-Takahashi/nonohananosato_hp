@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohanasato.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohananosato.jp';
   // Vercel（開発用デプロイ）では検索エンジンにインデックスさせない
   const isVercel = process.env.VERCEL === '1';
 
