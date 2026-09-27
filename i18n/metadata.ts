@@ -14,7 +14,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const OG_IMAGE = `${basePath}/images/IMG_8327.JPG`;
 
-/** ロケール非依存パス（'/', '/menu', '/menu/general'）から hreflang 一覧を作る */
+/** ロケール非依存パス（'/', '/menu', '/menu/general', '/menu/group'）から hreflang 一覧を作る */
 export function buildLanguageAlternates(path: string): Record<string, string> {
   const languages: Record<string, string> = {};
   for (const locale of LOCALES) {
@@ -134,6 +134,26 @@ export function buildGeneralMenuMetadata(locale: Locale): Metadata {
       title: `${meta.title} | ${dict.meta.site.siteName}`,
       description: meta.description,
       url: canonicalUrl(locale, '/menu/general'),
+    },
+  };
+}
+
+/** /menu/group 用メタデータ */
+export function buildGroupMenuMetadata(locale: Locale): Metadata {
+  const dict = getDictionary(locale);
+  const meta = dict.meta.group;
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    alternates: {
+      canonical: canonicalUrl(locale, '/menu/group'),
+      languages: buildLanguageAlternates('/menu/group'),
+    },
+    openGraph: {
+      title: `${meta.title} | ${dict.meta.site.siteName}`,
+      description: meta.description,
+      url: canonicalUrl(locale, '/menu/group'),
     },
   };
 }

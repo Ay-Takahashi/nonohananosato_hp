@@ -20,7 +20,6 @@
   "common": {
     "logoAlt": "Kuju Nonohana no Sato",
     "reserve": "Reservations & Inquiries",
-    "loading": "Loading...",
     "perPersonTaxIncl": "(per person, tax included)",
     "viewDetails": "View details",
     "closeDetails": "Close menu details",
@@ -101,6 +100,10 @@
     "title": "Regular Menu",
     "subtitle": "Set meals and course menus that make the most of seasonal ingredients"
   },
+  "group": {
+    "title": "Group Menu",
+    "subtitle": "Multi-dish courses for banquets and group dining"
+  },
   "notFound": {
     "title": "Page not found",
     "description": "The page you are looking for may have been moved or deleted."
@@ -163,6 +166,18 @@
         "Nonohana no Sato",
         "Kokonoe",
         "Oita cuisine"
+      ]
+    },
+    "group": {
+      "title": "Group Menu",
+      "description": "The group menu of Nonohana no Sato: multi-dish courses for banquets and group dining. 250 seats and parking for 6 buses.",
+      "keywords": [
+        "group menu",
+        "course meal",
+        "banquet",
+        "Nonohana no Sato",
+        "Kokonoe",
+        "Oita"
       ]
     }
   }

@@ -53,12 +53,12 @@ export default function Footer({
                 </Link>
               </li>
               <li>
-                <Link href={href('/menu?tab=general')} className="text-white hover:text-white/80 transition">
+                <Link href={href('/menu/general')} className="text-white hover:text-white/80 transition">
                   {dict.footer.generalMenu}
                 </Link>
               </li>
               <li>
-                <Link href={href('/menu?tab=group')} className="text-white hover:text-white/80 transition">
+                <Link href={href('/menu/group')} className="text-white hover:text-white/80 transition">
                   {dict.footer.groupMenu}
                 </Link>
               </li>

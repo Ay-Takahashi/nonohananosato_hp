@@ -4,7 +4,7 @@ import { LOCALES, getLocaleConfig, type Locale } from '@/i18n/config';
 export const dynamic = 'force-static';
 
 /** ロケール非依存のページパス一覧（トップは '' ） */
-const ROUTES = ['', '/menu', '/menu/general'] as const;
+const ROUTES = ['', '/menu', '/menu/general', '/menu/group'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohananosato.jp';
