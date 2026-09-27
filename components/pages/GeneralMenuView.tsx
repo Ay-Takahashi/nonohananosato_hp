@@ -2,25 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import photoMenuData from '@/data/photoMenu.json';
-import { transformMenuCategories } from '@/lib/utils';
+import { getPhotoMenu } from '@/lib/menuData';
+import { getDictionary } from '@/i18n/getDictionary';
+import type { Locale } from '@/i18n/config';
 
-interface MenuItem {
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
-}
+export default function GeneralMenuView({ locale }: { locale: Locale }) {
+  const dict = getDictionary(locale);
+  const menuCategories = getPhotoMenu(locale);
 
-interface MenuCategory {
-  categoryName: string;
-  description: string;
-  menuItems: MenuItem[];
-}
-
-const menuCategories: MenuCategory[] = transformMenuCategories(photoMenuData as MenuCategory[]);
-
-export default function GeneralMenuPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* ヒーローセクション */}
@@ -32,10 +21,10 @@ export default function GeneralMenuPage() {
           className="text-center"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">
-            一般メニュー
+            {dict.general.title}
           </h1>
           <p className="text-lg text-gray-700">
-            季節の食材を活かした定食やコース料理
+            {dict.general.subtitle}
           </p>
         </motion.div>
       </section>
@@ -112,12 +101,11 @@ export default function GeneralMenuPage() {
             viewport={{ once: true }}
             className="mt-12 p-6 bg-amber-50 rounded-lg"
           >
-            <h3 className="text-xl font-bold text-amber-900 mb-4">ご注文について</h3>
+            <h3 className="text-xl font-bold text-amber-900 mb-4">{dict.menu.notesTitle}</h3>
             <ul className="space-y-2 text-gray-700">
-              <li>• メニューは季節により変更する場合がございます</li>
-              <li>• 食材の仕入れ状況により、ご提供できない場合がございます</li>
-              <li>• アレルギーをお持ちの方は、事前にお申し付けください</li>
-              <li>• 価格は税込表示です</li>
+              {dict.menu.notes.map((note, index) => (
+                <li key={index}>• {note}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -133,7 +121,7 @@ export default function GeneralMenuPage() {
               href="tel:0973793375"
               className="inline-block bg-amber-800 text-white px-8 py-4 rounded-full text-lg hover:bg-amber-700 transition"
             >
-              ご予約・お問い合わせ
+              {dict.common.reserve}
             </a>
           </motion.div>
         </div>
