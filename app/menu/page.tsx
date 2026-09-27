@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import photoMenuData from '@/data/photoMenu.json';
 import simpleMenuData from '@/data/simpleMenu.json';
@@ -179,16 +179,23 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
 
 function MenuContent() {
   const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState<TabType>('general');
+  const tabParam = searchParams.get('tab');
+  const tabFromUrl: TabType | null =
+    tabParam === 'general' || tabParam === 'group' ? tabParam : null;
+
+  const [activeTab, setActiveTab] = useState<TabType>(tabFromUrl ?? 'general');
   const [selectedCourse, setSelectedCourse] = useState<CourseMenu | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const tab = searchParams.get('tab');
-    if (tab === 'general' || tab === 'group') {
-      setActiveTab(tab);
+  // URLのtabパラメータが変わったら、レンダー中に選択中のタブへ反映する
+  // （effect内でsetStateすると余分な再レンダーが発生するため避ける）
+  const [prevTabParam, setPrevTabParam] = useState(tabParam);
+  if (tabParam !== prevTabParam) {
+    setPrevTabParam(tabParam);
+    if (tabFromUrl) {
+      setActiveTab(tabFromUrl);
     }
-  }, [searchParams]);
+  }
 
   const handleCourseClick = (course: CourseMenu) => {
     setSelectedCourse(course);
