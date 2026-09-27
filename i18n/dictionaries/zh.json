@@ -1,0 +1,177 @@
+{
+  "_meta": {
+    "status": "machine-translation-draft",
+    "note": "機械翻訳ベースのドラフト（簡体字）。店舗側の監修が必要なキーを needsReview に列挙している（要監修）。",
+    "needsReview": [
+      "home.conceptHeadingLine1",
+      "home.conceptHeadingLine2",
+      "home.conceptParagraph1",
+      "home.conceptParagraph2",
+      "home.tagline",
+      "menu.generalIntro",
+      "menu.groupIntro",
+      "menu.tabs.general",
+      "menu.tabs.group",
+      "menu.groupNotes",
+      "meta.site.description",
+      "meta.menu.description",
+      "meta.general.description"
+    ]
+  },
+  "nav": {
+    "home": "首页",
+    "menu": "餐饮",
+    "info": "店铺信息",
+    "menuButtonLabel": "菜单",
+    "languageLabel": "语言"
+  },
+  "common": {
+    "logoAlt": "久住野之花之乡",
+    "reserve": "预约・咨询",
+    "loading": "加载中...",
+    "perPersonTaxIncl": "（每位・含税）",
+    "viewDetails": "查看详情",
+    "closeDetails": "关闭菜单详情",
+    "each": "每份",
+    "phoneHours": "电话受理时间: 9:00〜20:00"
+  },
+  "home": {
+    "tagline": "以用心的料理款待每一位客人",
+    "heroSlideAlt": "幻灯片图片",
+    "restaurantSlideAlt": "店内照片",
+    "conceptHeadingLine1": "在久住连山脚下，",
+    "conceptHeadingLine2": "品味四季",
+    "conceptParagraph1": "在雄伟的久住连山脚下，于四季变换的景色中品味料理。",
+    "conceptParagraph2": "希望每位客人都能安心享用美味，我们对当季食材和每一道料理都投入真心与时间。",
+    "menuSectionTitle": "菜单",
+    "generalMenuCard": {
+      "title": "普通菜单",
+      "description": "备有使用当季食材的定食与套餐料理。",
+      "imagePlaceholder": "料理照片"
+    },
+    "groupMenuCard": {
+      "title": "团体菜单",
+      "description": "备有适合宴会与聚餐的套餐料理。",
+      "imageAlt": "团体菜单"
+    },
+    "access": {
+      "heading": "店铺信息",
+      "address": "地址",
+      "businessHours": "营业时间",
+      "restaurant": "餐厅",
+      "shop": "商店",
+      "closedDays": "休息日",
+      "parking": "停车场",
+      "contact": "联系方式",
+      "tel": "电话",
+      "fax": "传真",
+      "email": "电子邮件",
+      "mapTitle": "久住野之花之乡 地图"
+    },
+    "cafe": {
+      "logoAlt": "Good Blue Cafe 标志",
+      "descriptionLine1": "可以带狗一起悠闲放松的花店兼咖啡厅",
+      "descriptionLine2": "另设有狗狗运动场"
+    }
+  },
+  "menu": {
+    "tabs": {
+      "general": "菜单",
+      "group": "团体用餐方案"
+    },
+    "generalIntro": "久住野之花之乡优先使用当地食材。\n每天在山中采摘并现炸的山菜天妇罗，香气怡人且具有药膳功效，深受好评。\n我们对美味料理不可缺少的味噌与酱油也十分讲究。\n所用调味料均与当地生产者合作开发而成。",
+    "groupIntro": "在人人追求“吃得健康”的当下，本店讲究使用日本人自古食用、具有药膳功效的山菜等当季食材。\n其中有些接近野草，我们相信野草顽强的生命力也会成为我们能量的源泉。",
+    "otherMenusTitle": "其他菜单",
+    "courseItemsTitle": "菜品内容",
+    "notesTitle": "关于点餐",
+    "notes": [
+      "菜单内容可能随季节变更",
+      "视食材进货情况，部分菜品可能无法提供",
+      "如有食物过敏，请事先告知",
+      "价格均为含税价"
+    ],
+    "groupNotesTitle": "致团体客人",
+    "groupNotes": [
+      "可根据预算安排会席料理。",
+      "喜庆、法事、各类大小宴会等，从小团体到大型团体，均可就预算与菜品内容与我们商谈。",
+      "菜品内容可能随季节变更",
+      "如有食物过敏或不喜欢的食材，请在预约时告知",
+      "套餐料理需在前一天之前预约",
+      "如需取消，请于前一天之前联系我们"
+    ],
+    "groupFacility": {
+      "parking": "停车场：",
+      "businessHours": "营业时间：",
+      "seating": "座位数："
+    }
+  },
+  "general": {
+    "title": "普通菜单",
+    "subtitle": "发挥当季食材风味的定食与套餐料理"
+  },
+  "notFound": {
+    "title": "未找到页面",
+    "description": "您访问的页面可能已移动或删除。"
+  },
+  "footer": {
+    "descriptionLine1": "使用当地新鲜食材，",
+    "descriptionLine2": "为您提供用心的料理。",
+    "linksTitle": "菜单",
+    "top": "首页",
+    "concept": "理念",
+    "generalMenu": "普通菜单",
+    "groupMenu": "团体菜单",
+    "infoTitle": "店铺信息",
+    "businessHours": "营业时间",
+    "restaurant": "餐厅",
+    "shop": "商店",
+    "closedDays": "休息日",
+    "rightsReserved": "All rights reserved."
+  },
+  "meta": {
+    "site": {
+      "title": "野之花之乡 - 以用心的料理款待每一位客人",
+      "titleTemplate": "%s | 野之花之乡",
+      "description": "使用当地新鲜食材，为您提供用心的料理。在大分县玖珠郡九重町自然丰富的环境中，享受四季风味。",
+      "shortDescription": "使用当地新鲜食材，为您提供用心的料理。",
+      "siteName": "野之花之乡",
+      "keywords": [
+        "野之花之乡",
+        "餐厅",
+        "九重町",
+        "大分",
+        "当地料理",
+        "新鲜食材",
+        "观光",
+        "美食"
+      ]
+    },
+    "menu": {
+      "title": "菜单",
+      "description": "野之花之乡的菜单介绍。使用当地新鲜食材的四季料理，备有御膳菜单、套餐料理等多样选择。",
+      "shortDescription": "野之花之乡的菜单介绍。使用当地新鲜食材的四季料理。",
+      "keywords": [
+        "菜单",
+        "料理",
+        "九重町",
+        "大分",
+        "当地料理",
+        "野之花之乡",
+        "御膳",
+        "套餐"
+      ]
+    },
+    "general": {
+      "title": "普通菜单",
+      "description": "野之花之乡的普通菜单。备有御膳、定食等使用当地新鲜食材的多样料理。",
+      "keywords": [
+        "普通菜单",
+        "御膳",
+        "定食",
+        "野之花之乡",
+        "九重町",
+        "大分料理"
+      ]
+    }
+  }
+}

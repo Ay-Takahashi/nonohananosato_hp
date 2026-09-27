@@ -4,54 +4,31 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import photoMenuData from '@/data/photoMenu.json';
-import simpleMenuData from '@/data/simpleMenu.json';
-import groupMenuData from '@/data/groupMenu.json';
-import facilityInfo from '@/data/facilityInfo.json';
-import { transformMenuCategories, transformCourseMenuImages } from '@/lib/utils';
-
-interface MenuItem {
-  name: string;
-  description: string;
-  price: number;
-  image?: string;
-}
-
-interface MenuCategory {
-  categoryName: string;
-  description: string;
-  menuItems: MenuItem[];
-}
-
-interface OtherMenuItem {
-  name: string;
-  price?: number | null;
-  note?: string;
-}
-
-interface OtherMenuCategory {
-  commonNote?: string;
-  commonPrice?: number | null;
-  list: OtherMenuItem[];
-}
-
-interface CourseMenu {
-  name: string;
-  description: string;
-  price: number;
-  items: string[];
-  minPeople?: number;
-  image?: string;
-}
-
-const generalMenuCategories: MenuCategory[] = transformMenuCategories(photoMenuData as MenuCategory[]);
-const otherMenus: Record<string, OtherMenuCategory> = simpleMenuData as Record<string, OtherMenuCategory>;
-const courseMenus: CourseMenu[] = transformCourseMenuImages(groupMenuData.courseMenus as CourseMenu[]);
+import {
+  getPhotoMenu,
+  getOtherMenus,
+  getCourseMenus,
+  getFacilityInfo,
+  type CourseMenu,
+} from '@/lib/menuData';
+import { getDictionary, type Dictionary } from '@/i18n/getDictionary';
+import type { Locale } from '@/i18n/config';
+import MultilineText from '@/components/MultilineText';
 
 type TabType = 'general' | 'group';
 
 // 団体メニューモーダルコンポーネント
-function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | null; isOpen: boolean; onClose: () => void }) {
+function CourseMenuModal({
+  course,
+  isOpen,
+  onClose,
+  dict,
+}: {
+  course: CourseMenu | null;
+  isOpen: boolean;
+  onClose: () => void;
+  dict: Dictionary;
+}) {
   if (!isOpen || !course) return null;
   
   return (
@@ -74,7 +51,7 @@ function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | nul
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition"
-          aria-label="メニュー詳細を閉じる"
+          aria-label={dict.common.closeDetails}
         >
           <svg className="w-6 h-6 text-main-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -102,7 +79,7 @@ function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | nul
               ¥{course.price.toLocaleString()}
             </p>
             <p className="text-sm mt-2 text-white">
-              (お一人様・税込)
+              {dict.common.perPersonTaxIncl}
             </p>
             {course.description && (
               <p className="text-sm mt-3 text-white/90">
@@ -113,7 +90,7 @@ function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | nul
           
           {course.items && course.items.length > 0 && (
             <>
-              <h4 className="text-xl font-bold text-main-500 mb-4 border-b-2 border-accent-500 pb-2">お品書き</h4>
+              <h4 className="text-xl font-bold text-main-500 mb-4 border-b-2 border-accent-500 pb-2">{dict.menu.courseItemsTitle}</h4>
               <ul className="space-y-3">
                 {course.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="text-main-500 flex items-start text-lg">
@@ -131,7 +108,17 @@ function CourseMenuModal({ course, isOpen, onClose }: { course: CourseMenu | nul
 }
 
 // 団体メニューカードコンポーネント
-function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index: number; onClick: () => void }) {
+function CourseMenuCard({
+  course,
+  index,
+  onClick,
+  dict,
+}: {
+  course: CourseMenu;
+  index: number;
+  onClick: () => void;
+  dict: Dictionary;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -153,7 +140,7 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 rounded-full px-4 py-2 text-main-500 text-sm font-semibold">
-              詳細を見る
+              {dict.common.viewDetails}
             </div>
           </div>
         </div>
@@ -165,7 +152,7 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
           ¥{course.price.toLocaleString()}
         </p>
         <p className="text-sm mt-2 text-white">
-          (お一人様・税込)
+          {dict.common.perPersonTaxIncl}
         </p>
         {course.description && (
           <p className="text-sm mt-3 text-white/90">
@@ -177,7 +164,13 @@ function CourseMenuCard({ course, index, onClick }: { course: CourseMenu; index:
   );
 }
 
-function MenuContent() {
+function MenuContent({ locale }: { locale: Locale }) {
+  const dict = getDictionary(locale);
+  const generalMenuCategories = getPhotoMenu(locale);
+  const otherMenus = getOtherMenus(locale);
+  const courseMenus = getCourseMenus(locale);
+  const facilityInfo = getFacilityInfo(locale);
+
   const searchParams = useSearchParams();
   const tabParam = searchParams.get('tab');
   const tabFromUrl: TabType | null =
@@ -221,7 +214,7 @@ function MenuContent() {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              お品書き
+              {dict.menu.tabs.general}
               {activeTab === 'general' && (
                 <motion.div
                   layoutId="activeTab"
@@ -238,7 +231,7 @@ function MenuContent() {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              団体様お食事プラン
+              {dict.menu.tabs.group}
               {activeTab === 'group' && (
                 <motion.div
                   layoutId="activeTab"
@@ -260,23 +253,9 @@ function MenuContent() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          {activeTab === 'general' ? (
-            <>
-              <p className="text-lg text-white">
-                くじゅう野の花の郷で使用する食材は地元のものを第一に考えています。<br />
-                毎日、山で採取して揚げる山菜の天ぷらは香りや薬膳効果も高くご好評をいただいています。<br />
-                おいしい料理に欠かせない調味料の味噌・醤油にもこだわっています。<br />
-                生産者と協力して商品化された、優れた調味料を使用しています。
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="text-lg text-white">
-                “体にいいものをたべたい”そんな健康ブームである今、日本人が昔から食べていた薬膳効果のある山菜など旬の食材に当店はこだわっています。<br />
-                中には野草に近いものもありますが、野草の持つたくましい生命力は私たちのエネルギーの源にもつながるものだと信じています。
-              </p>
-            </>
-          )}
+          <p className="text-lg text-white">
+            <MultilineText text={activeTab === 'general' ? dict.menu.generalIntro : dict.menu.groupIntro} />
+          </p>
         </motion.div>
       </section>
 
@@ -353,12 +332,12 @@ function MenuContent() {
               viewport={{ once: true }}
               className="mt-16"
             >
-              <h2 className="text-3xl font-bold text-main-500 mb-8 text-center">その他のメニュー</h2>
+              <h2 className="text-3xl font-bold text-main-500 mb-8 text-center">{dict.menu.otherMenusTitle}</h2>
               
               <div className="space-y-8">
-                {Object.entries(otherMenus).map(([category, categoryData], categoryIndex) => (
+                {otherMenus.map((categoryData, categoryIndex) => (
                   <motion.div
-                    key={category}
+                    key={categoryData.key}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
@@ -366,10 +345,10 @@ function MenuContent() {
                     className="bg-white border-2 border-main-500/20 overflow-hidden"
                   >
                     <div className="bg-sub-400 px-6 py-3 border-b-2 border-main-500/20 flex items-baseline gap-3">
-                      <h3 className="text-lg font-bold text-main-500">{category}</h3>
+                      <h3 className="text-lg font-bold text-main-500">{categoryData.categoryName}</h3>
                       {categoryData.commonPrice && (
                         <span className="text-base font-bold text-main-500">
-                          各 ¥{categoryData.commonPrice.toLocaleString()}
+                          {dict.common.each} ¥{categoryData.commonPrice.toLocaleString()}
                         </span>
                       )}
                       {categoryData.commonNote && (
@@ -413,12 +392,11 @@ function MenuContent() {
               viewport={{ once: true }}
               className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg"
             >
-              <h3 className="text-xl font-bold text-main-500 mb-4">ご注文について</h3>
+              <h3 className="text-xl font-bold text-main-500 mb-4">{dict.menu.notesTitle}</h3>
               <ul className="space-y-2 text-main-500">
-                <li>• メニューは季節により変更する場合がございます</li>
-                <li>• 食材の仕入れ状況により、ご提供できない場合がございます</li>
-                <li>• アレルギーをお持ちの方は、事前にお申し付けください</li>
-                <li>• 価格は税込表示です</li>
+                {dict.menu.notes.map((note, index) => (
+                  <li key={index}>• {note}</li>
+                ))}
               </ul>
             </motion.div>
 
@@ -434,7 +412,7 @@ function MenuContent() {
                 href="tel:0973793375"
                 className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
               >
-                ご予約・お問い合わせ
+                {dict.common.reserve}
               </a>
             </motion.div>
           </div>
@@ -453,6 +431,7 @@ function MenuContent() {
                   course={course} 
                   index={index} 
                   onClick={() => handleCourseClick(course)}
+                  dict={dict}
                 />
               ))}
             </motion.div>
@@ -462,6 +441,7 @@ function MenuContent() {
               course={selectedCourse} 
               isOpen={isModalOpen} 
               onClose={handleCloseModal} 
+              dict={dict}
             />
 
             {/* 注意事項 */}
@@ -472,27 +452,24 @@ function MenuContent() {
               viewport={{ once: true }}
               className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg"
             >
-              <h3 className="text-xl font-bold text-main-500 mb-4">団体のお客様へ</h3>
+              <h3 className="text-xl font-bold text-main-500 mb-4">{dict.menu.groupNotesTitle}</h3>
               <ul className="space-y-2 text-main-500 mb-8">
-                <li>• ご予算により会席メニューも承ります。</li>
-                <li>• 慶事・法事・大小の宴会など、小グループから団体様までご予算・お料理の内容のご相談を承ります。</li>
-                <li>• お料理内容は季節により変更する場合がございます</li>
-                <li>• アレルギーや苦手な食材がございましたら、ご予約時にお申し付けください</li>
-                <li>• コース料理は前日までのご予約が必要です</li>
-                <li>• キャンセルは前日までにお願いいたします</li>
+                {dict.menu.groupNotes.map((note, index) => (
+                  <li key={index}>• {note}</li>
+                ))}
               </ul>
 
               <div className="space-y-3 text-main-500">
                 <div className="flex items-start">
-                  <span className="font-semibold min-w-[140px]">駐車場：</span>
+                  <span className="font-semibold min-w-[140px]">{dict.menu.groupFacility.parking}</span>
                   <span>{facilityInfo.parking}</span>
                 </div>
                 <div className="flex items-start">
-                  <span className="font-semibold min-w-[140px]">営業時間：</span>
+                  <span className="font-semibold min-w-[140px]">{dict.menu.groupFacility.businessHours}</span>
                   <span>{facilityInfo.businessHours.restaurant.hours}</span>
                 </div>
                 <div className="flex items-start">
-                  <span className="font-semibold min-w-[140px]">席数：</span>
+                  <span className="font-semibold min-w-[140px]">{dict.menu.groupFacility.seating}</span>
                   <span>{facilityInfo.seating}</span>
                 </div>
               </div>
@@ -510,10 +487,10 @@ function MenuContent() {
                 href="tel:0973793375"
                 className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
               >
-                ご予約・お問い合わせ
+                {dict.common.reserve}
               </a>
               <p className="mt-4 text-gray-600">
-                お電話受付時間: 9:00〜20:00
+                {dict.common.phoneHours}
               </p>
             </motion.div>
           </div>
@@ -523,14 +500,15 @@ function MenuContent() {
   );
 }
 
-export default function MenuPage() {
+export default function MenuView({ locale }: { locale: Locale }) {
+  const dict = getDictionary(locale);
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-sub-200 flex items-center justify-center">
-        <div className="text-main-500 text-xl">読み込み中...</div>
+        <div className="text-main-500 text-xl">{dict.common.loading}</div>
       </div>
     }>
-      <MenuContent />
+      <MenuContent locale={locale} />
     </Suspense>
   );
 }

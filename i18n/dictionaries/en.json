@@ -1,0 +1,177 @@
+{
+  "_meta": {
+    "status": "machine-translation-draft",
+    "note": "機械翻訳ベースのドラフト。店舗側の監修が必要なキーを needsReview に列挙している（要監修）。",
+    "needsReview": [
+      "home.conceptHeadingLine1",
+      "home.conceptHeadingLine2",
+      "home.conceptParagraph1",
+      "home.conceptParagraph2",
+      "home.tagline",
+      "menu.generalIntro",
+      "menu.groupIntro",
+      "menu.tabs.general",
+      "menu.tabs.group",
+      "menu.groupNotes",
+      "meta.site.description",
+      "meta.menu.description",
+      "meta.general.description"
+    ]
+  },
+  "nav": {
+    "home": "Home",
+    "menu": "Dining",
+    "info": "Restaurant Info",
+    "menuButtonLabel": "Menu",
+    "languageLabel": "Language"
+  },
+  "common": {
+    "logoAlt": "Kuju Nonohana no Sato",
+    "reserve": "Reservations & Inquiries",
+    "loading": "Loading...",
+    "perPersonTaxIncl": "(per person, tax included)",
+    "viewDetails": "View details",
+    "closeDetails": "Close menu details",
+    "each": "Each",
+    "phoneHours": "Phone hours: 9:00–20:00"
+  },
+  "home": {
+    "tagline": "Hospitality through heartfelt cooking",
+    "heroSlideAlt": "Slide image",
+    "restaurantSlideAlt": "Restaurant interior",
+    "conceptHeadingLine1": "At the foot of the Kuju mountains,",
+    "conceptHeadingLine2": "a taste of every season",
+    "conceptParagraph1": "Cuisine to savour amid the changing seasons, at the foot of the majestic Kuju mountain range.",
+    "conceptParagraph2": "Because we want every guest to eat well and with confidence, we put care and time into seasonal ingredients and into every dish we serve.",
+    "menuSectionTitle": "Our Menu",
+    "generalMenuCard": {
+      "title": "Regular Menu",
+      "description": "Set meals and course menus made with seasonal ingredients.",
+      "imagePlaceholder": "Dish photo"
+    },
+    "groupMenuCard": {
+      "title": "Group Menu",
+      "description": "Course menus ideal for banquets and group dining.",
+      "imageAlt": "Group menu"
+    },
+    "access": {
+      "heading": "Restaurant Information",
+      "address": "Address",
+      "businessHours": "Opening Hours",
+      "restaurant": "Restaurant",
+      "shop": "Shop",
+      "closedDays": "Closed",
+      "parking": "Parking",
+      "contact": "Contact",
+      "tel": "Tel",
+      "fax": "Fax",
+      "email": "Email",
+      "mapTitle": "Map of Kuju Nonohana no Sato"
+    },
+    "cafe": {
+      "logoAlt": "Good Blue Cafe logo",
+      "descriptionLine1": "A flower shop and cafe where you can relax with your dog",
+      "descriptionLine2": "A dog run is available on site"
+    }
+  },
+  "menu": {
+    "tabs": {
+      "general": "Our Menu",
+      "group": "Group Dining Plans"
+    },
+    "generalIntro": "At Kuju Nonohana no Sato we put local ingredients first.\nOur tempura of wild mountain vegetables, foraged and fried fresh every day, is prized for its aroma and its traditional health benefits.\nWe are equally particular about the miso and soy sauce that are essential to good cooking.\nWe use outstanding seasonings developed together with local producers.",
+    "groupIntro": "In today's health-conscious times, when everyone wants to eat what is good for them, we focus on seasonal ingredients such as the wild mountain vegetables that Japanese people have eaten for centuries for their medicinal qualities.\nSome are close to wild herbs, and we believe the hardy vitality of these plants becomes a source of our own energy.",
+    "otherMenusTitle": "Other Menu Items",
+    "courseItemsTitle": "Courses",
+    "notesTitle": "About Ordering",
+    "notes": [
+      "The menu may change with the season.",
+      "Some items may be unavailable depending on ingredient supply.",
+      "Please let us know in advance if you have any allergies.",
+      "All prices include tax."
+    ],
+    "groupNotesTitle": "For Group Guests",
+    "groupNotes": [
+      "We can also prepare kaiseki-style banquet menus to suit your budget.",
+      "From small groups to large parties, we are happy to discuss budget and menu content for celebrations, memorial gatherings and banquets of any size.",
+      "Dish contents may change with the season.",
+      "Please tell us at the time of booking if you have allergies or ingredients you would rather avoid.",
+      "Course menus must be reserved by the day before.",
+      "Please cancel by the day before."
+    ],
+    "groupFacility": {
+      "parking": "Parking:",
+      "businessHours": "Opening hours:",
+      "seating": "Seats:"
+    }
+  },
+  "general": {
+    "title": "Regular Menu",
+    "subtitle": "Set meals and course menus that make the most of seasonal ingredients"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for may have been moved or deleted."
+  },
+  "footer": {
+    "descriptionLine1": "Heartfelt cooking made with",
+    "descriptionLine2": "fresh local ingredients.",
+    "linksTitle": "Menu",
+    "top": "Top",
+    "concept": "Concept",
+    "generalMenu": "Regular Menu",
+    "groupMenu": "Group Menu",
+    "infoTitle": "Restaurant Information",
+    "businessHours": "Opening Hours",
+    "restaurant": "Restaurant",
+    "shop": "Shop",
+    "closedDays": "Closed",
+    "rightsReserved": "All rights reserved."
+  },
+  "meta": {
+    "site": {
+      "title": "Nonohana no Sato - Hospitality through heartfelt cooking",
+      "titleTemplate": "%s | Nonohana no Sato",
+      "description": "Heartfelt cooking made with fresh local ingredients. Enjoy the flavours of each season in the rich natural setting of Kokonoe, Oita Prefecture.",
+      "shortDescription": "Heartfelt cooking made with fresh local ingredients.",
+      "siteName": "Nonohana no Sato",
+      "keywords": [
+        "Nonohana no Sato",
+        "restaurant",
+        "Kokonoe",
+        "Oita",
+        "local cuisine",
+        "Kyushu",
+        "Kuju",
+        "Japanese food"
+      ]
+    },
+    "menu": {
+      "title": "Menu",
+      "description": "The menu of Nonohana no Sato. Seasonal dishes made with fresh local ingredients, including gozen set meals and course menus.",
+      "shortDescription": "The menu of Nonohana no Sato. Seasonal dishes made with fresh local ingredients.",
+      "keywords": [
+        "menu",
+        "restaurant menu",
+        "Kokonoe",
+        "Oita",
+        "local cuisine",
+        "Nonohana no Sato",
+        "set meal",
+        "course"
+      ]
+    },
+    "general": {
+      "title": "Regular Menu",
+      "description": "The regular menu of Nonohana no Sato, with gozen set meals and other dishes made from fresh local ingredients.",
+      "keywords": [
+        "regular menu",
+        "gozen",
+        "set meal",
+        "Nonohana no Sato",
+        "Kokonoe",
+        "Oita cuisine"
+      ]
+    }
+  }
+}
