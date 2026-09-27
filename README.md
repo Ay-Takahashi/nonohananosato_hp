@@ -18,6 +18,7 @@
 - ✅ 団体メニューページ
 - ✅ スムーズなスクロールアニメーション
 - ✅ モバイル対応ナビゲーション
+- ✅ 多言語対応（日本語 / 英語 / 簡体中文）
 
 ## 開発環境のセットアップ
 
@@ -131,19 +132,39 @@ npm start
 ```
 homepage/
 ├── app/
-│   ├── layout.tsx          # ルートレイアウト
-│   ├── page.tsx            # トップページ
-│   ├── globals.css         # グローバルスタイル
-│   └── menu/
-│       ├── general/        # 一般メニュー
-│       │   └── page.tsx
-│       └── group/          # 団体メニュー
-│           └── page.tsx
+│   ├── (ja)/                   # 日本語（デフォルト）: / , /menu , /menu/general
+│   │   ├── layout.tsx          # 日本語のルートレイアウト
+│   │   ├── page.tsx
+│   │   └── menu/
+│   │       ├── page.tsx
+│   │       └── general/page.tsx
+│   ├── [locale]/               # 英語・中文: /en/... , /zh/...
+│   │   ├── layout.tsx          # generateStaticParams で全ロケールを静的生成
+│   │   ├── params.ts           # [locale] セグメントの解決
+│   │   ├── page.tsx
+│   │   └── menu/
+│   │       ├── page.tsx
+│   │       └── general/page.tsx
+│   ├── global-not-found.tsx    # 404 ページ
+│   ├── globals.scss            # グローバルスタイル
+│   ├── robots.ts
+│   └── sitemap.ts              # 全ロケールの URL + hreflang
 ├── components/
-│   ├── Header.tsx          # ヘッダーコンポーネント
-│   └── Footer.tsx          # フッターコンポーネント
+│   ├── SiteShell.tsx           # <html>/<body> と共通レイアウト（全ロケール共通）
+│   ├── Header.tsx              # ヘッダー（言語切り替え含む）
+│   ├── Footer.tsx              # フッター
+│   ├── LanguageSwitcher.tsx    # 言語切り替え UI
+│   └── pages/                  # 各ページ本体（ロケールを props で受け取る）
+├── i18n/
+│   ├── config.ts               # ロケール定義（追加はここだけ）
+│   ├── getDictionary.ts
+│   ├── metadata.ts             # ロケール別メタデータ・hreflang
+│   └── dictionaries/           # UI 文言の辞書（ja / en / zh）
+├── data/
+│   ├── *.json                  # 日本語のメニュー・施設情報（正データ）
+│   └── translations/           # 各言語の訳（オーバーレイ）
 ├── public/
-│   └── images/             # 画像ファイル
+│   └── images/                 # 画像ファイル
 └── package.json
 ```
 
@@ -153,19 +174,21 @@ homepage/
 
 以下のファイルで店舗情報を変更できます：
 
+- `data/facilityInfo.json` - 住所・営業時間・連絡先など（日本語）
+- `data/translations/facility.{en,zh}.json` - 上記の各言語表記
 - `components/Header.tsx` - ヘッダーの電話番号とロゴ
-- `components/Footer.tsx` - フッターの店舗情報
-- `app/page.tsx` - トップページのアクセス情報
-- `app/layout.tsx` - ページタイトルと説明
+- `i18n/metadata.ts` / `i18n/dictionaries/*.json` - ページタイトルと説明
 
 ### メニューの変更
 
-- `app/menu/general/page.tsx` - 一般メニューの内容
-- `app/menu/group/page.tsx` - 団体メニューの内容
+- `data/photoMenu.json` - 定食メニュー（写真付き）
+- `data/simpleMenu.json` - 単品・ドリンクなど
+- `data/groupMenu.json` - 団体様お食事プラン
+- `data/translations/menu.{en,zh}.json` - 上記の各言語訳（**要監修**）
 
 ### デザインの変更
 
-- `app/globals.css` - グローバルスタイル
+- `app/globals.scss` - グローバルスタイル
 - Tailwind CSSのユーティリティクラスで各コンポーネントのスタイルを変更
 
 ### 画像の追加
@@ -183,6 +206,36 @@ import Image from 'next/image';
   height={600}
 />
 ```
+
+## 多言語対応（i18n）
+
+| 言語 | URL | `<html lang>` |
+| --- | --- | --- |
+| 日本語（デフォルト） | `/` `/menu` `/menu/general` | `ja` |
+| English | `/en` `/en/menu` `/en/menu/general` | `en` |
+| 简体中文 | `/zh` `/zh/menu` `/zh/menu/general` | `zh-Hans` |
+
+- `output: 'export'` のため middleware は使えない。ロケールは URL パスで表現し、
+  `app/[locale]` の `generateStaticParams` でビルド時に全ロケール分の HTML を生成する。
+- 日本語はプレフィックスなし（既存の本番 URL を変えないため）。`app/(ja)` 配下に配置している。
+- ブラウザの言語から自動リダイレクトはできない（静的配信のため）。ヘッダーの言語切り替えリンクで選んでもらう。
+- `sitemap.ts` が全ロケールの URL を列挙し、各ページに `hreflang`（+ `x-default`）を付与する。
+
+### 言語を追加する
+
+1. `i18n/config.ts` の `LOCALES` に 1 件追加する
+2. `i18n/dictionaries/<locale>.json` を追加する（`ja.json` をコピーして訳す）
+3. `data/translations/menu.<locale>.json` / `facility.<locale>.json` を追加する
+
+ルーティング側の変更は不要。
+
+### 翻訳の管理
+
+- UI 文言: `i18n/dictionaries/{ja,en,zh}.json`
+- メニュー・施設情報: `data/*.json`（日本語が正）+ `data/translations/*.{en,zh}.json`（訳のオーバーレイ）
+  - キーは日本語表記そのもの。訳が無いキーは日本語のまま表示される（フォールバック）
+- **料理名・メニュー説明・施設名の訳は機械翻訳のドラフト**。各ファイルの `_meta.needsReview` /
+  辞書の `_meta.needsReview` に「要監修」の箇所を明示しているので、店舗側の監修後に差し替えること。
 
 ## デプロイ
 
