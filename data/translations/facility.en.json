@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "needsReview": true,
+    "note": "【要監修】施設情報（施設名の英語表記・住所のローマ字表記）は機械翻訳ベースのドラフト。とくに施設名の正式な英語表記は店舗側の確認が必要。",
+    "source": "machine-translation-draft"
+  },
+  "facilityName": "Kuju Nonohana no Sato",
+  "address": {
+    "full": "1672-18 Oaza Tano, Kokonoe-machi, Kusu-gun, Oita, Japan"
+  },
+  "businessHours": {
+    "restaurant": { "hours": "11:00 – 14:00", "note": "" },
+    "shop": { "hours": "11:00 – 15:00", "note": "" }
+  },
+  "closedDays": "Open every day",
+  "parking": "6 large vehicles / 20 cars (free)",
+  "seating": "250 seats"
+}

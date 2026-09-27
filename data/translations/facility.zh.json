@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "needsReview": true,
+    "note": "【要監修】施設情報（施設名の中国語表記・住所表記）は機械翻訳ベースのドラフト。とくに施設名の正式な中国語表記は店舗側の確認が必要。",
+    "source": "machine-translation-draft"
+  },
+  "facilityName": "久住野之花之乡",
+  "address": {
+    "full": "日本大分县玖珠郡九重町大字田野1672-18"
+  },
+  "businessHours": {
+    "restaurant": { "hours": "上午11:00〜下午2:00", "note": "" },
+    "shop": { "hours": "上午11:00〜下午3:00", "note": "" }
+  },
+  "closedDays": "全年无休",
+  "parking": "大型车6辆　普通车20辆（免费）",
+  "seating": "250个座位"
+}
