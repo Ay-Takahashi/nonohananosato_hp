@@ -186,9 +186,27 @@ import Image from 'next/image';
 
 ## デプロイ
 
-### Vercelへのデプロイ（推奨）
+### ブランチとデプロイ先
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| ブランチ | 役割 | デプロイ先 | URL |
+| --- | --- | --- | --- |
+| `master` | 本番 | GitHub Pages | https://nonohananosato.jp |
+| `dev` | 開発・確認用 | Vercel | https://nonohananosato-hp.vercel.app |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+開発は `dev` ブランチで行います。`master` に直接コミットしないでください。
 
+```
+dev で作業 → push → Vercel で確認 → master へマージ → GitHub Pages に本番反映
+```
+
+### 本番（GitHub Pages）
+
+`master` への push で `.github/workflows/nextjs.yml` が動き、`npm run build` の成果物 `out/` が
+自動でデプロイされます。手動実行は GitHub の Actions タブから可能です。
+
+### 開発用（Vercel）
+
+`dev` への push で自動ビルドされます。Vercel 側の Production Branch は `dev` に設定済みです。
+
+開発用サイトは検索エンジンにインデックスされないよう、`vercel.json` の `X-Robots-Tag` ヘッダーと
+`app/robots.ts` の Vercel 判定の2箇所で noindex にしています。この設定は変更しないでください。
