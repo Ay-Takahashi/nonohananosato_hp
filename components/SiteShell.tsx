@@ -21,7 +21,7 @@ const kleeOne = Klee_One({
 });
 
 // NOTE: デフォルト値は既存実装のまま。正しい本番ドメインへの差し替えは Issue #5 で対応中。
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohanasato.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohananosato.jp';
 
 export default function SiteShell({
   locale,
@@ -74,6 +74,8 @@ export default function SiteShell({
 
   return (
     <html lang={localeConfig.htmlLang}>
+      {/* App Routerのルートレイアウトから呼ばれるため<head>の直接記述が正しい（next/headはPages Router用） */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         <style dangerouslySetInnerHTML={{ __html: `
           :root {

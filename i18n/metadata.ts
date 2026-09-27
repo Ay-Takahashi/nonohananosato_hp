@@ -9,7 +9,7 @@ import { LOCALES, getLocaleConfig, localePath, type Locale } from './config';
  */
 
 // NOTE: デフォルト値は既存実装のまま。正しい本番ドメインへの差し替えは Issue #5 で対応中。
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohanasato.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohananosato.jp';
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const OG_IMAGE = `${basePath}/images/IMG_8327.JPG`;
