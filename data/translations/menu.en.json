@@ -1,53 +1,53 @@
 {
   "_meta": {
     "needsReview": true,
-    "note": "【要監修】料理名・メニュー説明の英訳は機械翻訳ベースのドラフトです。飲食店メニューのため、提供内容と齟齬がないか店舗側の監修が必要です。キーは data/*.json の日本語表記そのもの。訳が無いキーは日本語のまま表示されます（フォールバック）。",
-    "source": "machine-translation-draft"
+    "note": "機械翻訳ドラフトを人手でレビュー済み。方針: 郷土料理は「音写＋簡潔な説明」（例: Toriten (Oita-style battered fried chicken)）。御膳・膳・定食はすべて Set Meal、陶板（焼き）は Ceramic-plate Grilled に統一。単品リストは説明欄が無いため名前の括弧内に、団体コースは説明欄に注釈を入れている。【残る要確認事項】(1)「やく麺」: 写真（冷たい麺＋つけ汁＋山菜天ぷら）から chilled noodles with dipping broth とした。名前の由来が薬膳・薬草を練り込んだ麺であれば herb noodles と明記したいので店舗確認が必要。(2)「ノンアルコール」: ノンアルコールビールと解釈（Non-alcoholic Beer）。別商品なら要修正。(3)「柳川風」: 実際にごぼう・卵を使うか原文から判断できないため Yanagawa-style のまま注釈なし。(4)「花かご旬膳」「九重夢ポーク」: 商品名として Hanakago / Kokonoe Yume Pork と音写。対外的な英語表記が別にあれば差し替えが必要。キーは data/*.json の日本語表記そのもの。訳が無いキーは日本語のまま表示されます（フォールバック）。",
+    "source": "machine-translation-draft, human-reviewed"
   },
   "photoMenuCategories": {
     "定食メニュー": { "categoryName": "Set Meals", "description": "" }
   },
   "dishes": {
-    "とり天定食": { "name": "Toriten Set Meal (Oita-style chicken tempura)", "description": "" },
-    "だんご汁定食": { "name": "Dangojiru Set Meal (flat wheat-noodle miso soup)", "description": "" },
-    "やく麺定食": { "name": "Yakumen Set Meal (Oita-style noodles)", "description": "" },
-    "鶏ごぼう丼": { "name": "Chicken & Burdock Rice Bowl", "description": "Large size 1,150 yen" },
+    "とり天定食": { "name": "Toriten Set Meal (Oita-style battered fried chicken)", "description": "" },
+    "だんご汁定食": { "name": "Dangojiru Set Meal (flat wheat noodles in miso soup)", "description": "" },
+    "やく麺定食": { "name": "Yakumen Set Meal (chilled noodles with dipping broth)", "description": "" },
+    "鶏ごぼう丼": { "name": "Chicken & Burdock Root Rice Bowl", "description": "Large portion: 1,150 yen" },
     "おろしハンバーグランチ": { "name": "Hamburg Steak Lunch with Grated Daikon", "description": "" },
     "デミグラスハンバーグランチ": { "name": "Hamburg Steak Lunch with Demi-glace Sauce", "description": "" }
   },
   "simpleMenuCategories": {
-    "単品メニュー": "À la carte",
+    "単品メニュー": "À la Carte",
     "酒類": "Alcoholic Drinks",
     "ソフトドリンク": "Soft Drinks"
   },
   "simpleMenuItems": {
-    "だんご汁": { "name": "Dangojiru (flat wheat-noodle miso soup)" },
-    "とり天": { "name": "Toriten (Oita-style chicken tempura)" },
+    "だんご汁": { "name": "Dangojiru (flat wheat noodles in miso soup)" },
+    "とり天": { "name": "Toriten (Oita-style battered fried chicken)" },
     "アジフライ": { "name": "Deep-fried Horse Mackerel" },
     "生ビール": { "name": "Draft Beer" },
     "ビンビール": { "name": "Bottled Beer" },
     "ノンアルコール": { "name": "Non-alcoholic Beer" },
-    "日本酒 1合": { "name": "Sake (1 go / 180ml)", "note": "2 go 900 yen" },
+    "日本酒 1合": { "name": "Sake (180 ml)", "note": "360 ml: 900 yen" },
     "ウーロン茶": { "name": "Oolong Tea" },
     "コーラ": { "name": "Cola" },
     "オレンジ": { "name": "Orange Juice" },
     "ジンジャーエール": { "name": "Ginger Ale" },
-    "カルピス": { "name": "Calpis (cultured milk drink)" }
+    "カルピス": { "name": "Calpis (sweet cultured-milk drink)" }
   },
   "courseMenus": {
-    "海鮮セイロ蒸し鶏陶板御膳": { "name": "Steamed Seafood & Grilled Chicken Gozen Set", "description": "" },
-    "花かご旬膳 ポーク鍋膳": { "name": "Hanakago Seasonal Gozen: Pork Hot Pot", "description": "With mini udon or mini soba: 2,600 yen (tax incl.)" },
-    "花かご旬膳 とり鍋膳": { "name": "Hanakago Seasonal Gozen: Chicken Hot Pot", "description": "With mini udon or mini soba: 2,600 yen (tax incl.)" },
-    "おおいた豊後牛陶板御膳": { "name": "Oita Bungo Beef Grilled on a Ceramic Plate, Gozen Set", "description": "" },
-    "おおいた和牛味わい膳": { "name": "Oita Wagyu Tasting Gozen Set", "description": "A luxurious set in which you can enjoy both ceramic-plate grilled Oita Wagyu and shabu-shabu." },
-    "おおいた豊後牛しゃぶしゃぶ御膳": { "name": "Oita Bungo Beef Shabu-shabu Gozen Set", "description": "" },
-    "九重夢ポークしゃぶしゃぶ御膳": { "name": "Kokonoe Yume Pork Shabu-shabu Gozen Set", "description": "" },
-    "大分鶏陶板御膳": { "name": "Oita Chicken Grilled on a Ceramic Plate, Gozen Set", "description": "" },
-    "花かご旬膳 ポーク陶板焼き": { "name": "Hanakago Seasonal Gozen: Ceramic-plate Grilled Pork", "description": "With mini udon or mini soba: 2,600 yen (tax incl.)" },
-    "花かご旬膳 鶏陶板焼き": { "name": "Hanakago Seasonal Gozen: Ceramic-plate Grilled Chicken", "description": "With mini udon or mini soba: 2,600 yen (tax incl.)" },
-    "九重だんご汁御膳": { "name": "Kokonoe Dangojiru Gozen Set", "description": "" },
-    "【韓国風】九重だんご汁御膳": { "name": "[Korean Style] Kokonoe Dangojiru Gozen Set", "description": "Our dangojiru arranged Korean style with Japanese miso combined with gochujang, doubanjiang and tianmianjiang. We are happy to discuss adjusting the seasoning to your taste." },
-    "九重夢ポーク陶板御膳": { "name": "Kokonoe Yume Pork Grilled on a Ceramic Plate, Gozen Set", "description": "" },
-    "九重夢ポーク柳川風鍋御膳（冬季限定）": { "name": "Kokonoe Yume Pork Yanagawa-style Hot Pot Gozen Set (winter only)", "description": "" }
+    "海鮮セイロ蒸し鶏陶板御膳": { "name": "Steamed Seafood & Ceramic-plate Grilled Chicken Set", "description": "" },
+    "花かご旬膳 ポーク鍋膳": { "name": "Hanakago Seasonal Set: Pork Hot Pot", "description": "With mini udon or mini soba: 2,600 yen (tax included)" },
+    "花かご旬膳 とり鍋膳": { "name": "Hanakago Seasonal Set: Chicken Hot Pot", "description": "With mini udon or mini soba: 2,600 yen (tax included)" },
+    "おおいた豊後牛陶板御膳": { "name": "Oita Bungo Beef Ceramic-plate Grill Set", "description": "" },
+    "おおいた和牛味わい膳": { "name": "Oita Wagyu Beef Tasting Set", "description": "An indulgent set that lets you enjoy Oita Wagyu two ways at once: grilled on a ceramic plate, and as shabu-shabu." },
+    "おおいた豊後牛しゃぶしゃぶ御膳": { "name": "Oita Bungo Beef Shabu-shabu Set", "description": "" },
+    "九重夢ポークしゃぶしゃぶ御膳": { "name": "Kokonoe Yume Pork Shabu-shabu Set", "description": "" },
+    "大分鶏陶板御膳": { "name": "Oita Chicken Ceramic-plate Grill Set", "description": "" },
+    "花かご旬膳 ポーク陶板焼き": { "name": "Hanakago Seasonal Set: Ceramic-plate Grilled Pork", "description": "With mini udon or mini soba: 2,600 yen (tax included)" },
+    "花かご旬膳 鶏陶板焼き": { "name": "Hanakago Seasonal Set: Ceramic-plate Grilled Chicken", "description": "With mini udon or mini soba: 2,600 yen (tax included)" },
+    "九重だんご汁御膳": { "name": "Kokonoe Dangojiru Set", "description": "Flat wheat noodles simmered with vegetables in a miso-based soup, a speciality of Oita." },
+    "【韓国風】九重だんご汁御膳": { "name": "Kokonoe Dangojiru Set, Korean Style", "description": "Our dangojiru — flat wheat noodles in miso soup — with a Korean twist, the miso blended with gochujang, doubanjiang and sweet bean paste. We are glad to adjust the seasoning to your taste; just let us know." },
+    "九重夢ポーク陶板御膳": { "name": "Kokonoe Yume Pork Ceramic-plate Grill Set", "description": "" },
+    "九重夢ポーク柳川風鍋御膳（冬季限定）": { "name": "Kokonoe Yume Pork Yanagawa-style Hot Pot Set", "description": "Winter only." }
   }
 }
