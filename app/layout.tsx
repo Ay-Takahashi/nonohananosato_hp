@@ -12,7 +12,7 @@ const kleeOne = Klee_One({
   variable: "--font-klee-one",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohanasato.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nonohananosato.jp';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
