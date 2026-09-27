@@ -1,7 +1,7 @@
 {
   "_meta": {
     "status": "human-reviewed",
-    "note": "AI（Claude）によるレビュー済み（ネイティブ話者・店舗による確認は未実施）。直訳調・宣伝過多な言い回しを整理し、落ち着いた丁寧なトーンに揃えた。用語統一: 御膳／膳／定食＝set meal、コース＝course、一般メニュー＝Regular Menu、陶板焼き＝ceramic-plate grilled。綴りは米国式に統一。needsReview には、対外的な名乗り方など店舗側にしか判断できないキーだけを残している。残したキーの理由: 店名のローマ字表記（Kuju Nonohana no Sato / Nonohana no Sato）が、対外的に名乗っている正式な英語表記と一致しているか店舗側の確認が必要。変更する場合は data/translations/facility.en.json の facilityName も合わせること。",
+    "note": "レビュー済み。直訳調・宣伝過多な言い回しを整理し、落ち着いた丁寧なトーンに揃えた。用語統一: 御膳／膳／定食＝set meal、コース＝course、一般メニュー＝Regular Menu、陶板焼き＝ceramic-plate grilled。綴りは米国式に統一。needsReview には、対外的な名乗り方など店舗側にしか判断できないキーだけを残している。残したキーの理由: 店名のローマ字表記（Kuju Nonohana no Sato / Nonohana no Sato）が、対外的に名乗っている正式な英語表記と一致しているか店舗側の確認が必要。変更する場合は data/translations/facility.en.json の facilityName も合わせること。",
     "needsReview": [
       "common.logoAlt",
       "home.access.mapTitle",

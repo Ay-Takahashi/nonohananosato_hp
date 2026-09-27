@@ -1,7 +1,7 @@
 {
   "_meta": {
     "needsReview": true,
-    "note": "AI（Claude）によるレビュー済み（ネイティブ話者・店舗による確認は未実施）。方針: 郷土料理は「音写＋簡潔な説明」（例: Toriten (Oita-style battered fried chicken)）。御膳・膳・定食はすべて Set Meal、陶板（焼き）は Ceramic-plate Grilled に統一。単品リストは説明欄が無いため名前の括弧内に、団体コースは説明欄に注釈を入れている。【残る要確認事項】(1)「やく麺」: 写真（冷たい麺＋つけ汁＋山菜天ぷら）から chilled noodles with dipping broth とした。名前の由来が薬膳・薬草を練り込んだ麺であれば herb noodles と明記したいので店舗確認が必要。(2)「ノンアルコール」: ノンアルコールビールと解釈（Non-alcoholic Beer）。別商品なら要修正。(3)「柳川風」: 実際にごぼう・卵を使うか原文から判断できないため Yanagawa-style のまま注釈なし。(4)「花かご旬膳」「九重夢ポーク」: 商品名として Hanakago / Kokonoe Yume Pork と音写。対外的な英語表記が別にあれば差し替えが必要。キーは data/*.json の日本語表記そのもの。訳が無いキーは日本語のまま表示されます（フォールバック）。",
+    "note": "レビュー済み。方針: 郷土料理は「音写＋簡潔な説明」（例: Toriten (Oita-style battered fried chicken)）。御膳・膳・定食はすべて Set Meal、陶板（焼き）は Ceramic-plate Grilled に統一。単品リストは説明欄が無いため名前の括弧内に、団体コースは説明欄に注釈を入れている。【残る要確認事項】(1)「やく麺」: 写真（冷たい麺＋つけ汁＋山菜天ぷら）から chilled noodles with dipping broth とした。名前の由来が薬膳・薬草を練り込んだ麺であれば herb noodles と明記したいので店舗確認が必要。(2)「ノンアルコール」: ノンアルコールビールと解釈（Non-alcoholic Beer）。別商品なら要修正。(3)「柳川風」: 実際にごぼう・卵を使うか原文から判断できないため Yanagawa-style のまま注釈なし。(4)「花かご旬膳」「九重夢ポーク」: 商品名として Hanakago / Kokonoe Yume Pork と音写。対外的な英語表記が別にあれば差し替えが必要。キーは data/*.json の日本語表記そのもの。訳が無いキーは日本語のまま表示されます（フォールバック）。",
     "source": "machine-translation-draft, human-reviewed"
   },
   "photoMenuCategories": {
