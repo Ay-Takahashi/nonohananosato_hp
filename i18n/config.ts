@@ -83,7 +83,7 @@ export function isLocale(value: string): value is Locale {
 
 /**
  * ロケールを考慮したパスを生成する。
- * `path` は先頭スラッシュ付きのロケール非依存パス（例: '/menu', '/menu?tab=group', '/#access'）。
+ * `path` は先頭スラッシュ付きのロケール非依存パス（例: '/menu', '/menu/group', '/#access'）。
  */
 export function localePath(locale: Locale, path: string = '/'): string {
   const prefix = getLocaleConfig(locale).path;

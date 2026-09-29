@@ -196,7 +196,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
               className="hidden"
             >
               <Link
-                href={href('/menu?tab=general')}
+                href={href('/menu/general')}
                 className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
               >
                 <div className="relative h-64 bg-main-400">
@@ -225,7 +225,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
               className="w-full max-w-md"
             >
               <Link
-                href={href('/menu?tab=group')}
+                href={href('/menu/group')}
                 className="block bg-main-600 overflow-hidden transition group"
               >
                 <div className="relative h-64 bg-main-400">
