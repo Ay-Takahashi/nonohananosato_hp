@@ -28,8 +28,8 @@ export default function Header({
             <Image
               src={getImagePath('/images/logo.png')}
               alt={dict.common.logoAlt}
-              width={200}
-              height={60}
+              width={1014}
+              height={294}
               className="h-12 w-auto"
               priority
             />

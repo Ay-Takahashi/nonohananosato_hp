@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import FadeIn, { stagger } from '@/components/FadeIn';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getDictionary } from '@/i18n/getDictionary';
@@ -38,15 +38,10 @@ export default function MenuIndexView({ locale }: { locale: Locale }) {
     <div className="min-h-screen bg-sub-200">
       {/* ヒーローセクション */}
       <section className="relative h-64 bg-gradient-to-r from-main-400 via-main-500 to-main-400 flex items-center justify-center border-b-2 border-accent-500">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center px-4"
-        >
+        <FadeIn className="text-center px-4" onMount>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{dict.nav.menu}</h1>
           <p className="text-lg text-white">{dict.meta.menu.shortDescription}</p>
-        </motion.div>
+        </FadeIn>
       </section>
 
       {/* 一般 / 団体への導線 */}
@@ -54,13 +49,7 @@ export default function MenuIndexView({ locale }: { locale: Locale }) {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((card, index) => (
-              <motion.div
-                key={card.key}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
+              <FadeIn key={card.key} delay={stagger(index)}>
                 <Link
                   href={card.href}
                   className="block h-full bg-main-600 border-2 border-main-500/20 overflow-hidden hover:shadow-lg hover:shadow-accent-500/20 transition group"
@@ -81,18 +70,12 @@ export default function MenuIndexView({ locale }: { locale: Locale }) {
                     <p className="text-white/90">{card.description}</p>
                   </div>
                 </Link>
-              </motion.div>
+              </FadeIn>
             ))}
           </div>
 
           {/* お問い合わせボタン */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
+          <FadeIn className="mt-12 text-center">
             <a
               href="tel:0973793375"
               className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
@@ -100,7 +83,7 @@ export default function MenuIndexView({ locale }: { locale: Locale }) {
               {dict.common.reserve}
             </a>
             <p className="mt-4 text-main-400">{dict.common.phoneHours}</p>
-          </motion.div>
+          </FadeIn>
         </div>
       </section>
     </div>

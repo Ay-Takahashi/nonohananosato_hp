@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import FadeIn from '@/components/FadeIn';
 import { FiChevronDown } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 import { getImagePath } from '@/lib/utils';
@@ -28,6 +29,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
   const facilityInfo = getFacilityInfo(locale);
   const href = (path: string) => localePath(locale, path);
 
+  const prefersReducedMotion = useReducedMotion();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentRestaurantSlide, setCurrentRestaurantSlide] = useState(0);
 
@@ -50,10 +52,10 @@ export default function HomeView({ locale }: { locale: Locale }) {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden z-10 bg-black">
+      <section className="relative h-dvh flex items-center justify-center overflow-hidden z-10 bg-black">
         {/* 背景画像スライドショー */}
         <div className="absolute inset-0 -z-10">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={currentSlide}
               initial={{ opacity: 0 }}
@@ -76,18 +78,13 @@ export default function HomeView({ locale }: { locale: Locale }) {
         </div>
         
         <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col items-center"
-          >
+          <FadeIn className="flex flex-col items-center" onMount>
             <div className="mb-6">
               <Image
                 src={getImagePath('/images/logo.png')}
                 alt={dict.common.logoAlt}
-                width={400}
-                height={400}
+                width={1014}
+                height={294}
                 className="w-auto h-32 md:h-48"
                 priority
               />
@@ -95,13 +92,13 @@ export default function HomeView({ locale }: { locale: Locale }) {
             <p className="text-xl md:text-2xl text-white mb-8">
               {dict.home.tagline}
             </p>
-          </motion.div>
+          </FadeIn>
         </div>
 
         {/* スクロール指示 */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
+          animate={prefersReducedMotion ? undefined : { y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           <FiChevronDown className="text-4xl text-white" />
@@ -113,22 +110,11 @@ export default function HomeView({ locale }: { locale: Locale }) {
       {/* コンセプトセクション */}
       <section id="concept" className="pt-1 pb-10 border-t border-accent-500/30 bg-sub-transparent">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-          </motion.div>
+          {/* セクション上部の余白（中身のない装飾要素） */}
+          <div className="text-center mb-16" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <FadeIn direction="left">
               <h3 className="text-3xl font-bold text-main-500 mb-6">
                 {dict.home.conceptHeadingLine1}<br />{dict.home.conceptHeadingLine2}
               </h3>
@@ -138,17 +124,11 @@ export default function HomeView({ locale }: { locale: Locale }) {
               <p className="text-main-500 leading-relaxed">
                 {dict.home.conceptParagraph2}
               </p>
-            </motion.div>
+            </FadeIn>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative h-80 bg-main-500 overflow-hidden"
-            >
+            <FadeIn className="relative h-80 bg-main-500 overflow-hidden" direction="right">
               {/* レストラン画像スライドショー */}
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.div
                   key={currentRestaurantSlide}
                   initial={{ opacity: 0 }}
@@ -166,7 +146,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                   />
                 </motion.div>
               </AnimatePresence>
-            </motion.div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -174,27 +154,15 @@ export default function HomeView({ locale }: { locale: Locale }) {
       {/* メニュー紹介セクション */}
       <section className="py-20 bg-main-transparent border-t border-accent-500/30">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <FadeIn className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               {dict.home.menuSectionTitle}
             </h2>
-          </motion.div>
+          </FadeIn>
 
           <div className="flex justify-center max-w-5xl mx-auto">
             {/* 一般メニュー */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="hidden"
-            >
+            <FadeIn className="hidden" delay={0.1}>
               <Link
                 href={href('/menu/general')}
                 className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
@@ -214,16 +182,10 @@ export default function HomeView({ locale }: { locale: Locale }) {
                   </p>
                 </div>
               </Link>
-            </motion.div>
+            </FadeIn>
 
             {/* 団体メニュー */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="w-full max-w-md"
-            >
+            <FadeIn className="w-full max-w-md" delay={0.2}>
               <Link
                 href={href('/menu/group')}
                 className="block bg-main-600 overflow-hidden transition group"
@@ -245,7 +207,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                   </p>
                 </div>
               </Link>
-            </motion.div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -254,12 +216,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <section id="access" className="py-20 border-t border-accent-500/30 bg-sub-transparent">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <FadeIn direction="left">
               <h3 className="text-2xl font-bold text-main-500 mb-6">{dict.home.access.heading}</h3>
               <div className="space-y-4 text-main-500">
                 <div>
@@ -310,15 +267,9 @@ export default function HomeView({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </FadeIn>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative h-80 bg-main-500 overflow-hidden"
-            >
+            <FadeIn className="relative h-80 bg-main-500 overflow-hidden" direction="right">
               {/* Google Maps */}
               <iframe
                 title={dict.home.access.mapTitle}
@@ -330,17 +281,11 @@ export default function HomeView({ locale }: { locale: Locale }) {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-            </motion.div>
+            </FadeIn>
           </div>
 
           {/* 併設カフェ情報 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-16 max-w-4xl mx-auto"
-          >
+          <FadeIn className="mt-16 max-w-4xl mx-auto" delay={0.3}>
             <div className="flex flex-col md:flex-row items-center gap-6">
               <a
                 href="https://good-blue.com/"
@@ -366,7 +311,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </FadeIn>
         </div>
       </section>
       </div>
