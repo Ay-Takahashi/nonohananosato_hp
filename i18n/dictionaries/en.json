@@ -37,8 +37,7 @@
     "menuSectionTitle": "Our Menu",
     "generalMenuCard": {
       "title": "Regular Menu",
-      "description": "Set meals and course menus made with seasonal ingredients.",
-      "imagePlaceholder": "Dish photo"
+      "description": "Set meals and course menus made with seasonal ingredients."
     },
     "groupMenuCard": {
       "title": "Group Menu",
