@@ -1,10 +1,22 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiInstagram } from 'react-icons/fi';
-import facilityInfo from '@/data/facilityInfo.json';
 import { getImagePath } from '@/lib/utils';
+import { localePath, type Locale } from '@/i18n/config';
+import type { Dictionary } from '@/i18n/getDictionary';
+import type { FacilityInfo } from '@/lib/menuData';
 
-export default function Footer() {
+export default function Footer({
+  locale,
+  dict,
+  facilityInfo,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  facilityInfo: FacilityInfo;
+}) {
+  const href = (path: string) => localePath(locale, path);
+
   return (
     <footer className="bg-main-600 text-white border-t border-accent-500/30 font-bold">
       <div className="container mx-auto px-4 py-12">
@@ -14,40 +26,40 @@ export default function Footer() {
             <div className="mb-4">
               <Image 
                 src={getImagePath('/images/logo.png')} 
-                alt="野々花の里" 
-                width={180} 
-                height={54}
+                alt={dict.common.logoAlt}
+                width={1014} 
+                height={294}
                 className="h-10 w-auto"
               />
             </div>
             <p className="text-sub-300 mb-4">
-              地元の新鮮な食材を使用した、<br />
-              心を込めた料理をご提供いたします。
+              {dict.footer.descriptionLine1}<br />
+              {dict.footer.descriptionLine2}
             </p>
           </div>
 
           {/* リンク */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">メニュー</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{dict.footer.linksTitle}</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-white hover:text-white/80 transition">
-                  トップ
+                <Link href={href('/')} className="text-white hover:text-white/80 transition">
+                  {dict.footer.top}
                 </Link>
               </li>
               <li>
-                <Link href="/#concept" className="text-white hover:text-white/80 transition">
-                  コンセプト
+                <Link href={href('/#concept')} className="text-white hover:text-white/80 transition">
+                  {dict.footer.concept}
                 </Link>
               </li>
               <li>
-                <Link href="/menu?tab=general" className="text-white hover:text-white/80 transition">
-                  一般メニュー
+                <Link href={href('/menu/general')} className="text-white hover:text-white/80 transition">
+                  {dict.footer.generalMenu}
                 </Link>
               </li>
               <li>
-                <Link href="/menu?tab=group" className="text-white hover:text-white/80 transition">
-                  団体メニュー
+                <Link href={href('/menu/group')} className="text-white hover:text-white/80 transition">
+                  {dict.footer.groupMenu}
                 </Link>
               </li>
             </ul>
@@ -55,19 +67,19 @@ export default function Footer() {
 
           {/* 店舗情報 */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">店舗情報</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">{dict.footer.infoTitle}</h4>
             <p className="text-white mb-2">
               {facilityInfo.facilityName}<br />
               {facilityInfo.address.postalCode}<br />
               {facilityInfo.address.full}
             </p>
             <div className="text-gray-300 mb-2">
-              <p className="font-medium">営業時間</p>
-              <p className="text-sm">レストラン: {facilityInfo.businessHours.restaurant.hours}</p>
-              <p className="text-sm">売店: {facilityInfo.businessHours.shop.hours}</p>
+              <p className="font-medium">{dict.footer.businessHours}</p>
+              <p className="text-sm">{dict.footer.restaurant}: {facilityInfo.businessHours.restaurant.hours}</p>
+              <p className="text-sm">{dict.footer.shop}: {facilityInfo.businessHours.shop.hours}</p>
             </div>
             <p className="text-gray-300 mb-4">
-              定休日: {facilityInfo.closedDays}
+              {dict.footer.closedDays}: {facilityInfo.closedDays}
             </p>
             <a
               href={`tel:${facilityInfo.contact.tel.replace(/-/g, '')}`}
@@ -98,7 +110,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-pink-500/30 mt-8 pt-8 text-center text-white">
-          <p>&copy; 2026 {facilityInfo.facilityName}. All rights reserved.</p>
+          <p>&copy; 2026 {facilityInfo.facilityName}. {dict.footer.rightsReserved}</p>
         </div>
       </div>
     </footer>

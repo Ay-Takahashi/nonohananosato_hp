@@ -1,0 +1,18 @@
+{
+  "_meta": {
+    "needsReview": true,
+    "note": "レビュー済み。住所は英語圏の慣習に合わせて「大字（Oaza）」を省き、番地から始まる語順にした（郵便番号は日本語データ側の〒表記がそのまま前行に表示されるため重複させていない）。「大型6台」はバス6台分の意と解釈して 6 buses とした。【残る要確認事項】施設名の正式な英語表記 Kuju Nonohana no Sato（くじゅうのローマ字を Kuju / Kujyu / Kujū のどれで名乗るか、英語では「Kuju」を付けるか）は対外表記の問題のため店舗側の確認が必要。",
+    "source": "machine-translation-draft, human-reviewed"
+  },
+  "facilityName": "Kuju Nonohana no Sato",
+  "address": {
+    "full": "1672-18 Tano, Kokonoe-machi, Kusu-gun, Oita, Japan"
+  },
+  "businessHours": {
+    "restaurant": { "hours": "11:00–14:00", "note": "" },
+    "shop": { "hours": "11:00–15:00", "note": "" }
+  },
+  "closedDays": "Open daily",
+  "parking": "6 buses / 20 cars (free)",
+  "seating": "250 seats"
+}
