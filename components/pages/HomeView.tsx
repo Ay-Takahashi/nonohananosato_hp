@@ -160,18 +160,21 @@ export default function HomeView({ locale }: { locale: Locale }) {
             </h2>
           </FadeIn>
 
-          <div className="flex justify-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center max-w-5xl mx-auto">
             {/* 一般メニュー */}
-            <FadeIn className="hidden" delay={0.1}>
+            <FadeIn className="w-full max-w-md" delay={0.1}>
               <Link
                 href={href('/menu/general')}
-                className="block bg-main-600 border border-accent-500/30 rounded-lg overflow-hidden shadow-lg shadow-accent-500/10 hover:shadow-xl hover:shadow-accent-500/20 transition group"
+                className="block bg-main-600 overflow-hidden transition group"
               >
                 <div className="relative h-64 bg-main-400">
-                  {/* 画像プレースホルダー */}
-                  <div className="absolute inset-0 flex items-center justify-center text-white/30">
-                    <p className="text-2xl font-bold">{dict.home.generalMenuCard.imagePlaceholder}</p>
-                  </div>
+                  <Image
+                    src={getImagePath('/images/foods/toriten.jpg')}
+                    alt={dict.home.generalMenuCard.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 448px"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
@@ -196,6 +199,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                     alt={dict.home.groupMenuCard.imageAlt}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 448px"
                   />
                 </div>
                 <div className="p-6">

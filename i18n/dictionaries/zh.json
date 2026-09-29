@@ -40,8 +40,7 @@
     "menuSectionTitle": "菜单",
     "generalMenuCard": {
       "title": "常规菜单",
-      "description": "备有使用当季食材的各式套餐料理。",
-      "imagePlaceholder": "料理照片"
+      "description": "备有使用当季食材的各式套餐料理。"
     },
     "groupMenuCard": {
       "title": "团体菜单",
