@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import FadeIn from '@/components/FadeIn';
 import Image from 'next/image';
 import { useState } from 'react';
 import { getCourseMenus, getFacilityInfo, type CourseMenu } from '@/lib/menuData';
@@ -180,28 +181,18 @@ export default function GroupMenuView({ locale }: { locale: Locale }) {
 
       {/* ヒーローセクション */}
       <section className="relative h-64 bg-gradient-to-r from-main-400 via-main-500 to-main-400 flex items-center justify-center border-b-2 border-accent-500">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center px-4"
-        >
+        <FadeIn className="text-center px-4" onMount>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">{dict.group.title}</h1>
           <p className="text-lg text-white">
             <MultilineText text={dict.menu.groupIntro} />
           </p>
-        </motion.div>
+        </FadeIn>
       </section>
 
       {/* コンテンツエリア */}
       <section className="py-16">
       <div className="container mx-auto px-4 max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
+        <FadeIn className="grid grid-cols-1 md:grid-cols-2 gap-8" direction="right" onMount>
           {courseMenus.map((course, index) => (
             <CourseMenuCard 
               key={index} 
@@ -211,7 +202,7 @@ export default function GroupMenuView({ locale }: { locale: Locale }) {
               dict={dict}
             />
           ))}
-        </motion.div>
+        </FadeIn>
 
         {/* モーダル */}
         <CourseMenuModal 
@@ -222,13 +213,7 @@ export default function GroupMenuView({ locale }: { locale: Locale }) {
         />
 
         {/* 注意事項 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg"
-        >
+        <FadeIn className="mt-12 p-6 bg-white border-2 border-main-500/20 rounded-lg">
           <h3 className="text-xl font-bold text-main-500 mb-4">{dict.menu.groupNotesTitle}</h3>
           <ul className="space-y-2 text-main-500 mb-8">
             {dict.menu.groupNotes.map((note, index) => (
@@ -250,16 +235,10 @@ export default function GroupMenuView({ locale }: { locale: Locale }) {
               <span>{facilityInfo.seating}</span>
             </div>
           </div>
-        </motion.div>
+        </FadeIn>
 
         {/* お問い合わせボタン */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
+        <FadeIn className="mt-12 text-center">
           <a
             href="tel:0973793375"
             className="inline-block bg-accent-500 text-white px-8 py-4 rounded-full text-lg hover:bg-accent-600 transition shadow-lg shadow-accent-500/30"
@@ -269,7 +248,7 @@ export default function GroupMenuView({ locale }: { locale: Locale }) {
           <p className="mt-4 text-gray-600">
             {dict.common.phoneHours}
           </p>
-        </motion.div>
+        </FadeIn>
       </div>
       </section>
     </div>
