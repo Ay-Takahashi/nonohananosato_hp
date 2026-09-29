@@ -26,8 +26,7 @@
     "menuSectionTitle": "お品書き",
     "generalMenuCard": {
       "title": "一般メニュー",
-      "description": "季節の食材を使った定食やコース料理をご用意しております。",
-      "imagePlaceholder": "料理写真"
+      "description": "季節の食材を使った定食やコース料理をご用意しております。"
     },
     "groupMenuCard": {
       "title": "団体メニュー",
