@@ -162,12 +162,12 @@ export default function HomeView({ locale }: { locale: Locale }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center max-w-5xl mx-auto">
             {/* 一般メニュー */}
-            <FadeIn className="w-full max-w-md" delay={0.1}>
+            <FadeIn className="w-full max-w-md h-full" delay={0.1}>
               <Link
                 href={href('/menu/general')}
-                className="block bg-main-600 overflow-hidden transition group"
+                className="flex h-full flex-col bg-main-600 overflow-hidden transition group"
               >
-                <div className="relative h-64 bg-main-400">
+                <div className="relative h-64 shrink-0 bg-main-400">
                   <Image
                     src={getImagePath('/images/foods/toriten.jpg')}
                     alt={dict.home.generalMenuCard.title}
@@ -176,7 +176,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                     sizes="(max-width: 768px) 100vw, 448px"
                   />
                 </div>
-                <div className="p-6">
+                <div className="flex-1 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
                     {dict.home.generalMenuCard.title}
                   </h3>
@@ -188,12 +188,12 @@ export default function HomeView({ locale }: { locale: Locale }) {
             </FadeIn>
 
             {/* 団体メニュー */}
-            <FadeIn className="w-full max-w-md" delay={0.2}>
+            <FadeIn className="w-full max-w-md h-full" delay={0.2}>
               <Link
                 href={href('/menu/group')}
-                className="block bg-main-600 overflow-hidden transition group"
+                className="flex h-full flex-col bg-main-600 overflow-hidden transition group"
               >
-                <div className="relative h-64 bg-main-400">
+                <div className="relative h-64 shrink-0 bg-main-400">
                   <Image
                     src={getImagePath('/images/foods/IMG_8332.JPG')}
                     alt={dict.home.groupMenuCard.imageAlt}
@@ -202,7 +202,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
                     sizes="(max-width: 768px) 100vw, 448px"
                   />
                 </div>
-                <div className="p-6">
+                <div className="flex-1 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-white/80 transition">
                     {dict.home.groupMenuCard.title}
                   </h3>
